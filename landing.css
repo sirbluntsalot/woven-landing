@@ -877,6 +877,8 @@ body {
   .domain-panel { grid-template-columns: 1fr; gap: 32px; }
   .domain-stage { min-height: 0; }
   .domain-panel:not(.active) { display: none; }
+  /* stack the viz directly under the domain tabs; copy reads below it */
+  .domain-panel .domain-viz { order: -1; }
   .rab-layout, .brief-layout { grid-template-columns: 1fr; gap: 44px; }
   .stack-whys { grid-template-columns: 1fr; }
   .section { padding: 90px 0; }
@@ -884,6 +886,12 @@ body {
 @media (max-width: 560px) {
   .problem-grid { grid-template-columns: 1fr; }
   .domain-tab { padding: 10px 14px; font-size: 13px; }
+  /* viz window headers: wrap pills into rows instead of clipping */
+  .rh-header { height: auto; min-height: 50px; flex-wrap: wrap; padding: 8px 12px; gap: 8px; row-gap: 6px; }
+  .rh-dd { padding: 5px 10px; font-size: 12px; }
+  .rh-opp-label { font-size: 12px; }
+  /* rhetorical stage hugs the scaled-up scene on phones */
+  .rh-stage { height: 215px; }
   .numbers-grid { flex-direction: column; align-items: stretch; }
   .num-arrow { transform: rotate(90deg); }
 }

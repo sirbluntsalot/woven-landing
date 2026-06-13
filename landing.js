@@ -530,9 +530,11 @@ if (rhStage) {
   const rhScene = document.getElementById("rh-scene");
   const rhCards = [...rhStage.querySelectorAll(".rh-policy")];
 
-  // same scale formula as the canvas scene so cards render at equal size
+  // same scale formula as the canvas scene so cards render at equal size;
+  // phones scale to the 660px scene itself so the matchup fills the width
   const setRhScale = () => {
-    const scale = (rhStage.clientWidth / 1000) * 1.15;
+    const w = rhStage.clientWidth;
+    const scale = w < 560 ? w / 700 : (w / 1000) * 1.15;
     rhScene.style.setProperty("--rh-scale", scale.toFixed(4));
   };
   new ResizeObserver(setRhScale).observe(rhStage);
