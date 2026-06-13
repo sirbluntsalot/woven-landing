@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Woven — Campaign Intelligence Platform</title>
+  <meta name="description" content="Woven maps the digital and rhetorical terrain of your race, then lets you build, test, and deploy the message — all in one platform. The strategic layer modern campaigns are missing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@400..600&family=Scope+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="landing.css" />
+</head>
+<body>
+
+  <!-- ======================= NAV ======================= -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#top" aria-label="Woven home">
+        <img class="logo-img" src="logos/woven_logo.png" alt="Woven" />
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#problem">Why Woven</a>
+        <a href="#domains">Domains</a>
+        <a href="#rabbitholes">Rabbit Holes</a>
+        <a href="#brief">Daily Brief</a>
+        <a href="#stack">Your Stack</a>
+      </nav>
+      <a href="#cta" class="btn btn-sm btn-primary nav-cta">Request a demo</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ======================= HERO ======================= -->
+    <section class="hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-content">
+        <h1 class="hero-title reveal">
+          See the whole race.<br />
+          <span class="grad-text">Every single morning.</span>
+        </h1>
+        <p class="hero-sub reveal">
+          Woven maps the <strong>digital</strong> and <strong>rhetorical</strong> terrain of your race — then lets you
+          <strong>build, test, and deploy</strong> the message on one canvas, so every day starts with a decision, not a scramble.
+        </p>
+        <div class="hero-ctas reveal">
+          <a href="#cta" class="btn btn-primary btn-magnetic">Request a demo<span class="btn-arrow">→</span></a>
+          <a href="#domains" class="btn btn-ghost">Explore the platform</a>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- ======================= TICKER ======================= -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span class="tick hot">● HOT&nbsp; ICE raids reshaping the narrative — rapid-response playbook spun up in Canvas</span>
+        <span class="tick pressure">▲ PRESSURE&nbsp; Veteran-care position under pressure — opponent caucus announcement</span>
+        <span class="tick whitespace">◆ WHITESPACE&nbsp; Water &amp; tribal sovereignty — no opponent counterpart detected</span>
+        <span class="tick reach">$2,156 digital buy → 78,000 persuadables reached</span>
+        <span class="tick sim">◎ SIM&nbsp; Contrast blitz scores 81/100 alignment with Latino political media</span>
+        <span class="tick delta">▸ DEPLOY&nbsp; Launch rollout: 11 assets · 6 approved · 2 published</span>
+        <span class="tick hot">● HOT&nbsp; ICE raids reshaping the narrative — rapid-response playbook spun up in Canvas</span>
+        <span class="tick pressure">▲ PRESSURE&nbsp; Veteran-care position under pressure — opponent caucus announcement</span>
+        <span class="tick whitespace">◆ WHITESPACE&nbsp; Water &amp; tribal sovereignty — no opponent counterpart detected</span>
+        <span class="tick reach">$2,156 digital buy → 78,000 persuadables reached</span>
+        <span class="tick sim">◎ SIM&nbsp; Contrast blitz scores 81/100 alignment with Latino political media</span>
+        <span class="tick delta">▸ DEPLOY&nbsp; Launch rollout: 11 assets · 6 approved · 2 published</span>
+      </div>
+    </div>
+
+    <!-- ======================= PROBLEM ======================= -->
+    <section class="section" id="problem">
+      <div class="container">
+        <p class="kicker reveal">The gap in every campaign</p>
+        <h2 class="section-title reveal">Your stack runs the campaign.<br /><span class="dim">Nothing reads the race.</span></h2>
+        <p class="section-sub reveal">
+          CRMs tell you who to call. Ad platforms tell you what you spent. Spreadsheets tell you what already happened.
+          They're operational tools — and none of them can tell you <em>what it all means</em>.
+        </p>
+        <div class="problem-grid">
+          <div class="p-card tilt reveal" style="--i:0">
+            <div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/><path d="M3 11h18"/></svg></div>
+            <h3>The CRM</h3>
+            <p>Knows every voter file and call sheet. Has no idea which podcast your persuadables listened to last night.</p>
+            <span class="p-tag mono">OPERATIONAL</span>
+          </div>
+          <div class="p-card tilt reveal" style="--i:1">
+            <div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v3l13 5V6L3 11Z"/><path d="M16 8.5a4 4 0 0 1 0 8"/><path d="M7 14.5V19a1.5 1.5 0 0 0 3 0v-3.4"/></svg></div>
+            <h3>The ad platform</h3>
+            <p>Optimizes for clicks. Can't tell you that a $2,156 creator buy out-reaches your entire mail universe.</p>
+            <span class="p-tag mono">OPERATIONAL</span>
+          </div>
+          <div class="p-card tilt reveal" style="--i:2">
+            <div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M15 9v11"/></svg></div>
+            <h3>The spreadsheet</h3>
+            <p>Holds last week's canvass notes. Nobody has read them. The #1 doorstep issue changed and you don't know yet.</p>
+            <span class="p-tag mono">OPERATIONAL</span>
+          </div>
+          <div class="p-card p-card-woven tilt reveal" style="--i:3">
+            <div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/></svg></div>
+            <h3>Woven</h3>
+            <p>The interpretive layer that sits above all of it. One god-view of the race — refreshed every morning.</p>
+            <span class="p-tag p-tag-accent mono">STRATEGIC</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= DOMAINS ======================= -->
+    <section class="section section-domains" id="domains">
+      <div class="container">
+        <p class="kicker reveal">The platform</p>
+        <h2 class="section-title reveal">Three domains. <span class="dim">One field of view.</span></h2>
+        <p class="section-sub reveal">
+          Every domain answers a question your campaign manager asks daily — and they cross-reference each other,
+          so one click moves you from a news event to the creator who amplified it to the response asset you ship the same day.
+        </p>
+
+        <div class="domain-tabs reveal" role="tablist" aria-label="Intelligence domains">
+          <button class="domain-tab active" data-domain="digital" role="tab" aria-selected="true">
+            <span class="tab-dot td-digital"></span>Digital
+          </button>
+          <button class="domain-tab" data-domain="canvas" role="tab" aria-selected="false">
+            <span class="tab-dot td-canvas"></span>Canvas
+          </button>
+          <button class="domain-tab" data-domain="rhetorical" role="tab" aria-selected="false">
+            <span class="tab-dot td-rhetorical"></span>Rhetorical
+          </button>
+          <div class="tab-glider" aria-hidden="true"></div>
+        </div>
+
+        <div class="domain-stage reveal">
+          <!-- DIGITAL -->
+          <article class="domain-panel active" data-domain="digital">
+            <div class="domain-copy">
+              <p class="domain-q mono">“Which creators reach my persuadable voters?”</p>
+              <h3>The creator map, scoped to your district</h3>
+              <p>
+                Woven positions hundreds of online creators in a 3D ideological space and filters to the ones with real
+                audience inside <em>your</em> race. A live engagement layer shows which voices you've booked, which your
+                opponent owns — and the amber whitespace neither of you has touched.
+              </p>
+              <ul class="domain-points">
+                <li><span class="li-dot blue"></span>Friendly / hostile / whitespace overlay on every creator</li>
+                <li><span class="li-dot blue"></span>Weekly delta ribbon — five events that moved your map</li>
+                <li><span class="li-dot blue"></span>Ad opportunities ranked by cost-per-persuadable</li>
+              </ul>
+            </div>
+            <div class="domain-viz viz-map">
+              <div class="rh-header">
+                <div class="dm-toggle" role="group" aria-label="Map projection">
+                  <button type="button" class="dm-mode active" data-mode="2d" aria-pressed="true">2D</button>
+                  <button type="button" class="dm-mode" data-mode="3d" aria-pressed="false">3D</button>
+                </div>
+              </div>
+              <div class="dm-stage" id="dm-stage">
+                <svg class="dm-clouds" id="dm-clouds" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+                <div class="dm-pill mono" id="dm-pill" hidden></div>
+              </div>
+              <div class="viz-legend mono" aria-hidden="true">
+                <span><i class="lg" style="background:#8b5cf6"></i>new left media</span>
+                <span><i class="lg" style="background:#0e9f8f"></i>masculine podcasters</span>
+                <span><i class="lg" style="background:#d97706"></i>lifestyle</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- CANVAS -->
+          <article class="domain-panel" data-domain="canvas">
+            <div class="domain-copy">
+              <p class="domain-q mono">“Can we build it, test it, and ship it — without leaving the room?”</p>
+              <h3>The 360° messaging canvas: build, test, deploy</h3>
+              <p>
+                One core message, orchestrated across paid, earned, owned, creator, and ground channels on a single
+                node canvas. Start from a pre-wired playbook — candidate launch, contrast attack, rapid response —
+                let AI draft the first pass of every deliverable, then <em>simulate the whole campaign</em> against
+                real Woven audiences before a dollar moves.
+              </p>
+              <ul class="domain-points">
+                <li><span class="li-dot teal"></span>Assets built from blocks: scripts, A/B variants, run-of-show, budgets, sign-offs</li>
+                <li><span class="li-dot teal"></span>Test tab scores alignment, reach, and conversion per asset, per audience</li>
+                <li><span class="li-dot teal"></span>Deploy with one click: campaign briefs, exports, and approval chains</li>
+              </ul>
+            </div>
+            <div class="domain-viz viz-canvas" aria-hidden="true">
+              <div class="rh-header">
+                <div class="rh-group">
+                  <span class="rh-dd">Candidate Launch<svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </div>
+                <div class="rh-group">
+                  <span class="rh-dd">Save as draft</span>
+                  <span class="rh-dd cv-export">Export as media brief</span>
+                </div>
+              </div>
+              <div class="viz-body fc-stage" id="fc-stage">
+                <svg style="display:none" aria-hidden="true">
+                  <defs>
+                    <symbol id="i-digital" viewBox="0 0 11 9"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.668 0H1.62634C0.690132 0.04391 -0.0353978 0.834737 0.00133544 1.77125V4.72875C-0.0353978 5.66526 0.690132 6.45609 1.62634 6.5H3.65217C3.59667 6.8456 3.51334 7.18615 3.403 7.51833L3.21884 8.0275C3.16347 8.16346 3.17543 8.31757 3.25112 8.44336C3.3268 8.56915 3.45736 8.6519 3.60342 8.66667H6.69092C6.83698 8.6519 6.96753 8.56915 7.04322 8.44336C7.11891 8.31757 7.13087 8.16346 7.0755 8.0275L6.89134 7.51833C6.781 7.18615 6.69767 6.8456 6.64217 6.5H8.668C9.60421 6.45609 10.3297 5.66526 10.293 4.72875V1.77125C10.3297 0.834737 9.60421 0.04391 8.668 0ZM4.14509 7.85417V7.78917C4.26253 7.45753 4.3531 7.11699 4.41592 6.77083H5.83509C5.90046 7.11642 5.99098 7.45677 6.10592 7.78917V7.85417H4.14509ZM8.668 5.6875C9.15429 5.64164 9.51503 5.21597 9.4805 4.72875V1.77125C9.51503 1.28403 9.15429 0.858357 8.668 0.8125H1.62634C1.14005 0.858357 0.779312 1.28403 0.813835 1.77125V4.72875C0.779312 5.21597 1.14005 5.64164 1.62634 5.6875H8.668Z" fill="#707070"/></symbol>
+                    <symbol id="i-geographic" viewBox="0 0 11 11"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.395059 3.18623C1.1966 1.25544 3.08252 -0.00218849 5.17307 2.85914e-06C6.54307 2.10491e-06 7.85689 0.544606 8.82513 1.51386C9.79336 2.48311 10.3366 3.7975 10.3351 5.1675C10.3351 7.25805 9.07554 9.14265 7.14391 9.94217C5.21229 10.7417 2.98923 10.2986 1.51176 8.81956C0.034293 7.34054 -0.406478 5.11702 0.395059 3.18623ZM9.22473 6.73834C9.41386 6.23635 9.50933 5.70393 9.5064 5.1675C9.51857 4.18096 9.19372 3.2198 8.58556 2.44292C8.34181 2.84917 7.8814 3.45584 7.31265 3.45584C7.09384 3.43824 6.87364 3.46026 6.66265 3.52084V3.58042C6.66265 3.67792 6.92806 3.94334 7.0689 4.08417C7.41964 4.34571 7.65318 4.73494 7.7189 5.1675C7.7189 6.03417 7.80556 6.29959 7.8814 6.36459C8.34966 6.39808 8.80645 6.52517 9.22473 6.73834ZM0.839732 5.1675C0.834807 4.2039 1.1512 3.26615 1.7389 2.5025C1.89238 2.78243 2.1889 2.95366 2.50807 2.94667C2.94635 3.16766 3.33376 3.47758 3.64557 3.85667C3.41615 3.99773 3.20819 4.17103 3.02807 4.37125C3.01135 4.38735 2.99314 4.40508 2.97385 4.42386C2.82442 4.56937 2.61005 4.77812 2.5189 4.78292C2.26812 4.77534 2.02534 4.87163 1.84793 5.04904C1.67053 5.22644 1.57423 5.46923 1.58182 5.72C1.58259 5.78209 1.59741 5.8432 1.62515 5.89875L2.11265 6.87375C2.11887 7.43455 2.20832 7.99131 2.37807 8.52584C1.38994 7.69195 0.825809 6.46039 0.839732 5.1675ZM3.69432 9.24084C4.16835 9.41289 4.66878 9.50087 5.17307 9.50084V9.51709C6.66385 9.52711 8.05512 8.7701 8.8564 7.51292C8.52967 7.35471 8.18085 7.24696 7.82182 7.19334C6.88473 7.19334 6.88473 5.85 6.88473 5.2C6.88473 5.10184 6.64325 4.86075 6.49404 4.71179C6.48682 4.70458 6.47982 4.69759 6.47307 4.69084C6.1248 4.42792 5.8934 4.03902 5.82848 3.6075C5.82848 2.67042 6.78182 2.67042 7.29098 2.67042C7.43182 2.665 7.76765 2.26417 7.97348 1.86334C6.3673 0.503679 4.01644 0.494541 2.39973 1.84167C2.40793 1.88826 2.40793 1.93592 2.39973 1.9825C2.40515 2.1125 2.46473 2.1125 2.52432 2.1125C3.17432 2.1125 4.6314 3.43417 4.65307 4.05167C4.65393 4.19092 4.5952 4.32389 4.4917 4.41705C4.38819 4.5102 4.24979 4.55464 4.1114 4.53917C4.0139 4.54459 3.74848 4.81 3.60765 4.95084C3.34415 5.29941 2.95588 5.53237 2.52432 5.60084C2.48098 5.60084 2.41598 5.60084 2.41598 5.655L2.88723 6.55959C2.91497 6.61514 2.92979 6.67625 2.93057 6.73834C2.93057 7.32875 3.06057 8.2875 3.34223 8.57459C3.53875 8.74485 3.66437 8.98255 3.69432 9.24084Z" fill="#707070"/></symbol>
+                    <symbol id="i-rhetorical" viewBox="0 0 10 10"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.56247 0.225886C3.87427 0.158858 4.1923 0.125058 4.51122 0.125053C5.78625 0.118818 7.00141 0.66541 7.84265 1.62356C8.68389 2.58171 9.06864 3.85739 8.89747 5.12089C8.62247 7.22922 6.54164 8.93422 4.41497 8.93422H1.36247C1.103 8.93433 0.862531 8.79815 0.72917 8.57556C0.595809 8.35298 0.589152 8.07672 0.711637 7.84797L0.835387 7.60964C0.95855 7.38008 0.949813 7.10225 0.812471 6.88089C0.0432505 5.67162 -0.0888151 4.1635 0.458521 2.83894C1.00586 1.51439 2.164 0.539409 3.56247 0.225886ZM4.3783 8.24214C6.24676 8.21266 7.83578 6.87091 8.17789 5.0338C8.33329 3.96913 8.01321 2.88993 7.30247 2.08214C6.59846 1.27651 5.58111 0.813778 4.51122 0.812553C4.24025 0.813071 3.97002 0.840708 3.70455 0.895053C2.52441 1.15763 1.5457 1.97776 1.0807 3.09376C0.615703 4.20976 0.722513 5.48219 1.36705 6.50505C1.64127 6.93584 1.66057 7.48138 1.41747 7.93047L1.29372 8.16422C1.28365 8.17952 1.28365 8.19934 1.29372 8.21464C1.31205 8.24214 1.33955 8.24214 1.33955 8.24214H4.3783Z" fill="#707070" stroke="#707070" stroke-width="0.25"/></symbol>
+                    <symbol id="i-policy" viewBox="0 0 9 10"><path d="M6.63258 3.17668C6.57722 3.41539 6.31303 3.5693 6.04249 3.52045C5.6987 3.45838 5.1457 3.45489 4.55491 3.4858C3.97759 3.51601 3.41379 3.57599 3.07528 3.62148C2.80229 3.65817 2.54728 3.49264 2.5057 3.25176C2.46412 3.01088 2.65172 2.78587 2.92472 2.74918C3.28956 2.70016 3.88405 2.637 4.49572 2.605C5.09392 2.5737 5.76062 2.56892 6.24297 2.65602C6.51351 2.70486 6.68794 2.93797 6.63258 3.17668Z" fill="#707070"/><path d="M6.04249 5.28516C6.31303 5.33401 6.57722 5.1801 6.63258 4.94139C6.68794 4.70268 6.51351 4.46957 6.24297 4.42072C5.76062 4.33363 5.09392 4.3384 4.49572 4.3697C3.88405 4.40171 3.28956 4.46486 2.92472 4.51389C2.65172 4.55058 2.46412 4.77559 2.5057 5.01646C2.54728 5.25734 2.80229 5.42287 3.07528 5.38618C3.41379 5.34069 3.97759 5.28072 4.55491 5.25051C5.1457 5.2196 5.6987 5.22308 6.04249 5.28516Z" fill="#707070"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.87396 7.49873L8.87064 7.5021C8.8672 7.50561 8.86156 7.51141 8.85403 7.51931C8.83893 7.53515 8.81641 7.55926 8.78894 7.5901C8.73359 7.65224 8.66031 7.73929 8.58787 7.83921C8.42643 8.06192 8.33333 8.26243 8.33333 8.38235C8.33333 8.50227 8.42643 8.70279 8.58787 8.92549C8.66031 9.02542 8.73359 9.11247 8.78894 9.17461C8.81641 9.20545 8.83893 9.22955 8.85403 9.24539C8.85778 9.24932 8.86106 9.25274 8.86383 9.25561C8.86663 9.2585 8.86891 9.26084 8.87064 9.2626L8.87396 9.26598C9.00451 9.39586 9.03672 9.58136 8.95604 9.73971C8.87534 9.89811 8.69683 10 8.5 10H1.83333C0.820811 10 0 9.27575 0 8.38235V1.61627C0 0.722199 0.821573 0 1.83333 0H7.16667C8.17919 0 9 0.724246 9 1.61765V7.20588C9 7.31376 8.95508 7.41802 8.87396 7.49873ZM1.83333 0.882353C1.37233 0.882353 1 1.21085 1 1.61627V6.76471H8V1.61765C8 1.21156 7.6269 0.882353 7.16667 0.882353H1.83333ZM7.56146 9.11765C7.43967 8.9036 7.33333 8.64431 7.33333 8.38235C7.33333 8.1204 7.43967 7.86111 7.56146 7.64706H1V8.38235C1 8.78844 1.3731 9.11765 1.83333 9.11765H7.56146Z" fill="#707070"/></symbol>
+                    <symbol id="i-rally" viewBox="0 0 11 10"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.77138 0.0733204C9.89162 -0.276816 11 0.67112 11 1.97934V6.91295C11 8.22117 9.89162 9.1691 8.77138 8.81897L4.23077 7.39978V8.48515C4.23077 9.32178 3.62801 10 2.88448 10C2.23474 10 1.67771 9.47786 1.56033 8.75881L1.18024 6.43035C0.473051 6.10269 0 5.3234 0 4.44614C0 3.48206 0.571333 2.63628 1.39689 2.37825L8.77138 0.0733204ZM0.846154 4.44614C0.846154 4.98254 1.16403 5.45312 1.62336 5.59668L8.46154 7.73399V1.1583L1.62336 3.29561C1.16403 3.43917 0.846154 3.90975 0.846154 4.44614ZM9.30769 0.95521V7.93708C9.76726 7.90018 10.1538 7.4694 10.1538 6.91295V1.97934C10.1538 1.42289 9.76726 0.992111 9.30769 0.95521ZM2.08955 6.73053L2.39256 8.58682C2.43617 8.85394 2.6431 9.04791 2.88448 9.04791C3.1607 9.04791 3.38462 8.79596 3.38462 8.48515V7.13531L2.08955 6.73053Z" fill="#707070"/></symbol>
+                    <symbol id="i-interview" viewBox="0 0 8 10"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.98419 0C2.32734 0 0.984192 1.34315 0.984192 3V5C0.984192 6.65685 2.32734 8 3.98419 8C5.64105 8 6.98419 6.65685 6.98419 5V3C6.98419 1.34315 5.64105 0 3.98419 0ZM6.23419 5V3C6.23419 1.75736 5.22683 0.75 3.98419 0.75C2.74155 0.75 1.73419 1.75736 1.73419 3V5C1.73419 6.24264 2.74155 7.25 3.98419 7.25C5.22683 7.25 6.23419 6.24264 6.23419 5Z" fill="#707070"/><path d="M4.3588 8.98269C4.35906 8.98843 4.35919 8.9942 4.35919 9V9.5C4.35919 9.70711 4.1913 9.875 3.98419 9.875C3.77709 9.875 3.60919 9.70711 3.60919 9.5V9C3.60919 8.9942 3.60932 8.98843 3.60958 8.98269C1.69943 8.80529 0.178908 7.28479 0.0014773 5.37465C-0.0176781 5.16843 0.152056 5 0.359163 5C0.56627 5 0.731893 5.16861 0.755492 5.37437C0.941132 6.99296 2.31585 8.25 3.98416 8.25C5.65248 8.25 7.02719 6.99296 7.21283 5.37437C7.23643 5.16861 7.40206 5 7.60916 5C7.81627 5 7.986 5.16843 7.96685 5.37465C7.78942 7.28477 6.26893 8.80526 4.3588 8.98269Z" fill="#707070"/></symbol>
+                    <symbol id="i-creator" viewBox="0 0 11 11"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.14641 0.817481C5.1 0.764543 5.01164 0.764544 4.96523 0.817481L4.68234 1.14016C4.42538 1.43328 4.00709 1.52463 3.65096 1.37189L3.25287 1.20115C3.17939 1.16964 3.10664 1.2141 3.09125 1.27069L2.97959 1.68141C2.87652 2.06057 2.5354 2.32081 2.1481 2.33421L1.71365 2.34923C1.63336 2.35201 1.59403 2.41914 1.60425 2.47138L1.68593 2.88878C1.76171 3.276 1.56829 3.66012 1.22145 3.83844L0.836703 4.03626C0.773682 4.06866 0.762919 4.13885 0.798322 4.18555L1.05717 4.52697C1.29474 4.84031 1.29474 5.2708 1.05717 5.58415L0.798322 5.92557C0.762918 5.97226 0.773682 6.04245 0.836702 6.07485L1.22145 6.27267C1.56829 6.45099 1.76171 6.83512 1.68594 7.22233L1.60425 7.63974C1.59403 7.69197 1.63336 7.7591 1.71365 7.76188L2.1481 7.77691C2.5354 7.7903 2.87652 8.05054 2.97959 8.42971L3.09125 8.84042C3.10664 8.89701 3.17939 8.94148 3.25287 8.90996L3.65095 8.73923C4.00709 8.58648 4.42537 8.67783 4.68234 8.97095L4.96523 9.29363C5.01164 9.34657 5.1 9.34657 5.14641 9.29363L5.42929 8.97095C5.68626 8.67783 6.10454 8.58648 6.46068 8.73923L6.85877 8.90996C6.93225 8.94148 7.005 8.89701 7.02038 8.84042L7.13204 8.4297C7.23512 8.05054 7.57623 7.7903 7.96354 7.77691L8.39798 7.76188C8.47828 7.7591 8.51761 7.69197 8.50739 7.63974L8.4257 7.22233C8.34992 6.83512 8.54334 6.45099 8.89018 6.27267L9.27493 6.07485C9.33795 6.04245 9.34872 5.97226 9.31331 5.92557L9.05446 5.58415C8.81689 5.2708 8.8169 4.84031 9.05446 4.52697L9.31331 4.18555C9.34872 4.13885 9.33795 4.06866 9.27493 4.03626L8.89018 3.83844C8.54334 3.66012 8.34992 3.276 8.4257 2.88878L8.50739 2.47138C8.51761 2.41914 8.47827 2.35201 8.39798 2.34923L7.96354 2.33421C7.57623 2.32081 7.23512 2.06057 7.13204 1.68141L7.02038 1.27069C7.005 1.2141 6.93225 1.16964 6.85877 1.20115L6.46068 1.37189C6.10454 1.52463 5.68626 1.43328 5.4293 1.14016L5.14641 0.817481ZM6.54948 3.54464C6.70306 3.3945 6.94928 3.39729 7.09942 3.55087C7.24956 3.70445 7.24677 3.95067 7.09319 4.10081L4.57102 6.56647C4.4199 6.71422 4.17844 6.71422 4.02732 6.56647L3.01845 5.58021C2.86487 5.43007 2.86208 5.18385 3.01222 5.03027C3.16236 4.87669 3.40858 4.8739 3.56216 5.02404L4.29917 5.74454L6.54948 3.54464Z" fill="#707070"/></symbol>
+                    <symbol id="i-anchor" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="22"/><line x1="9" y1="12" x2="15" y2="12"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></g></symbol>
+                  </defs>
+                </svg>
+                <div class="fc-scene" id="fc-scene">
+                  <svg class="fc-svg" width="1000" height="850" viewBox="0 0 1000 850">
+                    <defs>
+                      <marker id="fc-arrow-grey" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 2 2 L 8 5 L 2 8" fill="none" stroke="#cbd5e1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </marker>
+                      <marker id="fc-arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 2 2 L 8 5 L 2 8" fill="none" stroke="#77FFB2" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </marker>
+                    </defs>
+                    <path id="fc-p1a" d="M 500 295 L 500 338 Q 500 350 488 350 L 242 350 Q 230 350 230 362 L 230 400" />
+                    <path id="fc-p1b" d="M 500 295 L 500 338 Q 500 350 512 350 L 528 350 Q 540 350 540 362 L 540 400" />
+                    <path id="fc-p2a" d="M 540 520 L 540 548 Q 540 560 528 560 L 432 560 Q 420 560 420 572 L 420 600" />
+                    <path id="fc-p2b" d="M 540 520 L 540 548 Q 540 560 552 560 L 728 560 Q 740 560 740 572 L 740 600" />
+                  </svg>
+
+                  <!-- Node 1: Anchor -->
+                  <div class="fc-card fc-on" id="fc-n1" style="left:350px; top:160px; width:300px; height:135px">
+                    <div class="fc-tabs">
+                      <span class="fc-tab"><svg width="10" height="10"><use href="#i-rhetorical"/></svg>Rhetorical</span>
+                      <span class="fc-tab"><svg width="9" height="10"><use href="#i-policy"/></svg>Policy</span>
+                    </div>
+                    <div class="fc-body fc-body-lg">
+                      <div class="fc-title-row">
+                        <span class="fc-title fc-title-lg">Expand Medicaid Access</span>
+                        <span class="fc-badge"><svg width="10" height="10"><use href="#i-anchor"/></svg>Anchor</span>
+                      </div>
+                      <div class="fc-divider"></div>
+                      <p class="fc-desc fc-desc-lg">Expand Obamacare subsidies and negotiate lower prices for prescription drugs.</p>
+                    </div>
+                    <div class="fc-socket" id="fc-s1">+</div>
+                  </div>
+
+                  <!-- Node 2: Rally -->
+                  <div class="fc-card" id="fc-n2" style="left:100px; top:400px; width:260px; height:120px">
+                    <div class="fc-tabs">
+                      <span class="fc-tab"><svg width="11" height="11"><use href="#i-geographic"/></svg>Geographic</span>
+                      <span class="fc-tab"><svg width="11" height="10"><use href="#i-rally"/></svg>Rally</span>
+                    </div>
+                    <div class="fc-body">
+                      <div class="fc-title-row fc-title-tall"><span class="fc-title">Demonstration with Disabled Veterans</span></div>
+                      <div class="fc-divider"></div>
+                      <p class="fc-desc">Outline policy details at veterans rally in Sherman Square.</p>
+                    </div>
+                    <div class="fc-socket">+</div>
+                  </div>
+
+                  <!-- Node 3: Podcast Announcement -->
+                  <div class="fc-card" id="fc-n3" style="left:400px; top:400px; width:280px; height:120px">
+                    <div class="fc-tabs">
+                      <span class="fc-tab"><svg width="11" height="9"><use href="#i-digital"/></svg>Digital</span>
+                      <span class="fc-tab"><svg width="8" height="10"><use href="#i-interview"/></svg>Interview</span>
+                    </div>
+                    <div class="fc-body">
+                      <div class="fc-title-row fc-title-tall"><span class="fc-title">Podcast Announcement</span></div>
+                      <div class="fc-divider"></div>
+                      <p class="fc-desc">Announce new policy on two popular podcasts.</p>
+                    </div>
+                    <div class="fc-socket" id="fc-s2">+</div>
+                  </div>
+
+                  <!-- Node 4: Pod Save America -->
+                  <div class="fc-card" id="fc-n4" style="left:290px; top:600px; width:260px; height:125px">
+                    <div class="fc-tabs">
+                      <span class="fc-tab"><svg width="11" height="9"><use href="#i-digital"/></svg>Digital</span>
+                      <span class="fc-tab"><svg width="11" height="11"><use href="#i-creator"/></svg>Creator</span>
+                    </div>
+                    <div class="fc-body fc-body-row">
+                      <div class="fc-col">
+                        <div class="fc-title-row"><span class="fc-title">Pod Save America</span></div>
+                        <div class="fc-divider"></div>
+                        <div class="fc-chips">
+                          <span class="fc-chip fc-chip-slate">New Left Media</span>
+                          <span class="fc-chip fc-chip-sky">Breadtube</span>
+                          <span class="fc-chip fc-chip-green">Mainstream Dems</span>
+                        </div>
+                      </div>
+                      <div class="fc-avatar"><img src="/Profile Pictures/Pod Save America.jpg" alt="" /></div>
+                    </div>
+                    <div class="fc-socket">+</div>
+                  </div>
+
+                  <!-- Node 5: The Ezra Klein Show -->
+                  <div class="fc-card" id="fc-n5" style="left:610px; top:600px; width:260px; height:125px">
+                    <div class="fc-tabs">
+                      <span class="fc-tab"><svg width="11" height="9"><use href="#i-digital"/></svg>Digital</span>
+                      <span class="fc-tab"><svg width="11" height="11"><use href="#i-creator"/></svg>Creator</span>
+                    </div>
+                    <div class="fc-body fc-body-row">
+                      <div class="fc-col">
+                        <div class="fc-title-row"><span class="fc-title">The Ezra Klein Show</span></div>
+                        <div class="fc-divider"></div>
+                        <div class="fc-chips">
+                          <span class="fc-chip fc-chip-purple">Academic Left</span>
+                          <span class="fc-chip fc-chip-slate">New Left Media</span>
+                          <span class="fc-chip fc-chip-amber">NYT Ecosphere</span>
+                        </div>
+                      </div>
+                      <div class="fc-avatar"><img src="/Profile Pictures/ezraklein.png" alt="" /></div>
+                    </div>
+                    <div class="fc-socket">+</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- RHETORICAL -->
+          <article class="domain-panel" data-domain="rhetorical">
+            <div class="domain-copy">
+              <p class="domain-q mono">“Who's winning the policy head-to-head?”</p>
+              <h3>Your positions vs. theirs — under live pressure</h3>
+              <p>
+                Durable policy cards face off across the divider while ephemeral news events apply <em>pressure</em> to them
+                in real time. When two hostile stories hit the same position inside a week, the card flags it.
+                When you hold a position your opponent has no answer to, Woven marks the whitespace.
+              </p>
+              <ul class="domain-points">
+                <li><span class="li-dot coral"></span>News lifecycle: hot → warm → cold → archived</li>
+                <li><span class="li-dot coral"></span>Pressure indicators on threatened positions</li>
+                <li><span class="li-dot coral"></span>Constituency resonance scored per card, per week</li>
+              </ul>
+            </div>
+            <div class="domain-viz viz-rhet" aria-hidden="true">
+              <div class="rh-header">
+                <div class="rh-group">
+                  <span class="rh-dd">Healthcare<svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="rh-dd">Policy<svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </div>
+                <div class="rh-group">
+                  <span class="rh-opp-label">Opponents :</span>
+                  <span class="rh-dd rh-dd-opp">Opponent<svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </div>
+              </div>
+              <div class="rh-stage" id="rh-stage">
+                <div class="rh-divider"></div>
+                <div class="rh-scene" id="rh-scene">
+                  <div class="rh-col">
+                    <div class="rh-col-label rh-label-you">YOUR POLICIES &amp; STANCES</div>
+                    <div class="rh-slot">
+                      <div class="fc-card rh-card rh-policy" data-rh="0" style="--rh-in: translate(-120px, 140px) rotate(-15deg) scale(0.8); --rh-out: translate(120px, -140px) rotate(15deg) scale(0.8);">
+                        <div class="fc-tabs">
+                          <span class="fc-tab"><svg width="10" height="10"><use href="#i-rhetorical"/></svg>Rhetorical</span>
+                          <span class="fc-tab"><svg width="9" height="10"><use href="#i-policy"/></svg>Policy</span>
+                        </div>
+                        <div class="fc-body rh-body">
+                          <div class="fc-title-row"><span class="fc-title">Expand Medicaid Access</span></div>
+                          <div class="fc-divider"></div>
+                          <p class="fc-desc">Expand Obamacare subsidies and negotiate lower prices for prescription drugs.</p>
+                        </div>
+                      </div>
+                      <div class="fc-card rh-card rh-policy" data-rh="1" style="--rh-in: translate(120px, 140px) rotate(15deg) scale(0.8); --rh-out: translate(-120px, -140px) rotate(-15deg) scale(0.8);">
+                        <div class="fc-tabs">
+                          <span class="fc-tab"><svg width="10" height="10"><use href="#i-rhetorical"/></svg>Rhetorical</span>
+                          <span class="fc-tab"><svg width="9" height="10"><use href="#i-policy"/></svg>Policy</span>
+                        </div>
+                        <div class="fc-body rh-body">
+                          <div class="fc-title-row"><span class="fc-title">Cap Insulin at $35</span></div>
+                          <div class="fc-divider"></div>
+                          <p class="fc-desc">Extend the insulin copay cap to every patient — insured or not.</p>
+                        </div>
+                      </div>
+                      <div class="fc-card rh-card rh-policy" data-rh="2" style="--rh-in: translate(0px, 160px) rotate(-8deg) scale(0.85); --rh-out: translate(0px, -160px) rotate(8deg) scale(0.85);">
+                        <div class="fc-tabs">
+                          <span class="fc-tab"><svg width="10" height="10"><use href="#i-rhetorical"/></svg>Rhetorical</span>
+                          <span class="fc-tab"><svg width="9" height="10"><use href="#i-policy"/></svg>Policy</span>
+                        </div>
+                        <div class="fc-body rh-body">
+                          <div class="fc-title-row"><span class="fc-title">Rural Hospital Rescue</span></div>
+                          <div class="fc-divider"></div>
+                          <p class="fc-desc">Emergency funding to keep rural ERs and maternity wards open.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <svg class="rh-bracket" width="80" height="120" viewBox="0 0 80 120" fill="none">
+                    <path d="M0 0.75H27C29.2091 0.75 31 2.54086 31 4.75V114.75C31 116.9591 29.2091 118.75 27 118.75H0" stroke="#999999" stroke-width="1"/>
+                    <path d="M80 118.75H53C50.7909 118.75 49 116.9591 49 114.75V4.75C49 2.54086 50.7909 0.75 53 0.75H80" stroke="#999999" stroke-width="1"/>
+                  </svg>
+                  <div class="rh-col">
+                    <div class="rh-col-label rh-label-opp">OPPONENT</div>
+                    <div class="rh-slot">
+                      <div class="fc-card rh-card rh-opp-card">
+                        <div class="fc-tabs">
+                          <span class="fc-tab"><svg width="10" height="10"><use href="#i-rhetorical"/></svg>Rhetorical</span>
+                          <span class="fc-tab"><svg width="9" height="10"><use href="#i-policy"/></svg>Policy</span>
+                        </div>
+                        <div class="fc-body rh-body">
+                          <div class="fc-title-row"><span class="fc-title">Repeal ACA Subsidies</span></div>
+                          <div class="fc-divider"></div>
+                          <p class="fc-desc">Phase out marketplace subsidies in favor of private health savings accounts.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= RABBIT HOLES ======================= -->
+    <section class="section section-rab" id="rabbitholes">
+      <div class="container rab-layout">
+        <div class="rab-copy">
+          <p class="kicker reveal">The rabbit hole engine</p>
+          <h2 class="section-title reveal">Audiences drift.<br />Rabbit holes pull. <span class="dim">Trace one.</span></h2>
+          <p class="section-sub reveal">
+            Nobody jumps from gym content to hyper-political punditry in one leap — the algorithm walks them
+            there, one recommendation at a time. Woven maps that drift as a weighted graph over the entire
+            creator space and runs real pathfinding on it: the likeliest routes your persuadable voters are
+            already traveling, and the exact hop where a message can still reach them.
+          </p>
+          <ul class="rab-points reveal">
+            <li><span class="li-dot blue"></span><span>Audience flow becomes a weighted graph — shortest-path routing surfaces the likeliest journeys, not anecdotes</span></li>
+            <li><span class="li-dot coral"></span><span>Every route ends at an <strong>attractor</strong>: the ecosystem pulling hardest on that audience</span></li>
+            <li><span class="li-dot teal"></span><span>The <strong>intercept window</strong> is hop one — book the gateway voice before the slide finishes</span></li>
+          </ul>
+          <div class="rab-controls reveal">
+            <span class="rab-controls-label mono">TRACE A STARTING AUDIENCE</span>
+            <div class="rab-chips" role="group" aria-label="Starting audience">
+              <button type="button" class="rab-chip active" data-route="fit">Fitness &amp; lifting</button>
+              <button type="button" class="rab-chip" data-route="crime">True crime</button>
+              <button type="button" class="rab-chip" data-route="game">Gaming streams</button>
+            </div>
+          </div>
+          <p class="rab-readout mono reveal" id="rab-readout">tracing audience flow…</p>
+        </div>
+        <div class="rab-viz reveal">
+          <div class="rab-frame" id="rab-frame">
+            <div class="rab-grid" aria-hidden="true"></div>
+            <svg class="rab-svg" id="rab-svg" aria-hidden="true"></svg>
+            <span class="rab-axis mono" aria-hidden="true">politicization →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= MIC DROP / NUMBERS ======================= -->
+    <section class="section section-numbers">
+      <div class="container">
+        <p class="kicker reveal">The mic-drop math</p>
+        <h2 class="section-title reveal">More persuadables than your mail universe.<br /><span class="dim">For the cost of one catering invoice.</span></h2>
+        <div class="numbers-grid">
+          <div class="num-card reveal" style="--i:0">
+            <span class="num mono" data-count="2156" data-prefix="$">$0</span>
+            <span class="num-label">one creator buy, Spanish-language TikTok</span>
+          </div>
+          <div class="num-arrow reveal mono" style="--i:1">→</div>
+          <div class="num-card num-card-hero reveal" style="--i:2">
+            <span class="num mono" data-count="78000">0</span>
+            <span class="num-label">persuadable voters reached in-district</span>
+          </div>
+          <div class="num-card reveal" style="--i:3">
+            <span class="num mono" data-count="36" data-suffix="×">0</span>
+            <span class="num-label">cheaper per persuadable than local TV news</span>
+          </div>
+        </div>
+        <p class="numbers-foot reveal">
+          Woven surfaced this gap automatically: a creator with more in-district reach than the local NBC affiliate's
+          evening news — and neither campaign had touched them. That's <strong>whitespace</strong>, and your race is full of it.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================= DAILY BRIEF ======================= -->
+    <section class="section" id="brief">
+      <div class="container brief-layout">
+        <div class="brief-viz reveal">
+          <div class="brief-window">
+            <div class="viz-chrome"><span></span><span></span><span></span><em class="mono">DAILY BRIEF · DAY 44 OF 120</em></div>
+            <div class="brief-lines" id="brief-lines">
+              <div class="brief-line" data-tag="RHETORICAL" data-tagclass="bt-coral" data-text="Veteran-care position under pressure — opponent announced caucus membership last night."></div>
+              <div class="brief-line" data-tag="DIGITAL" data-tagclass="bt-blue" data-text="Border Nurses podcast flagged: 9,400 in-district listeners, zero contact from either campaign."></div>
+              <div class="brief-line" data-tag="CANVAS" data-tagclass="bt-teal" data-text="Launch rollout: 9 of 11 assets approved. Contrast video still in review — owner pinged."></div>
+              <div class="brief-line" data-tag="RHETORICAL" data-tagclass="bt-amber" data-text="Whitespace open: water &amp; tribal sovereignty. No opponent counterpart. Draft ready."></div>
+              <div class="brief-line" data-tag="DIGITAL" data-tagclass="bt-blue" data-text="Weekly delta: +2.4 pts among veteran households traced to the Aug 22 VFW roundtable."></div>
+            </div>
+          </div>
+        </div>
+        <div class="brief-copy">
+          <p class="kicker reveal">Every morning, one screen</p>
+          <h2 class="section-title reveal">The Daily Brief turns<br />your race into <span class="grad-text">turns</span>.</h2>
+          <p class="section-sub reveal">
+            Think grand strategy: every day is one turn, and Woven opens it with five bullets that matter.
+            Each one links straight into the domain it came from — click a flag, land on the exact
+            creator, policy card, or campaign asset behind it.
+          </p>
+          <ul class="brief-points reveal">
+            <li><strong>Interpreted, not aggregated.</strong> Woven reads the canvass notes, the news cycle, and the creator map overnight — you read five sentences.</li>
+            <li><strong>One click to evidence.</strong> Every bullet deep-links into its domain with the relevant entity highlighted.</li>
+            <li><strong>Built for the operator.</strong> Your campaign manager gets a god-view before the first staff call.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= STACK ======================= -->
+    <section class="section section-stack" id="stack">
+      <div class="container">
+        <p class="kicker reveal">Where Woven fits</p>
+        <h2 class="section-title reveal">Above your stack. <span class="dim">Not instead of it.</span></h2>
+        <p class="section-sub reveal">
+          Keep NGP VAN. Keep ActBlue, Mobilize, and your ad accounts. Woven doesn't replace operational tools —
+          it's the interpretive layer that reads them together and hands you the strategy.
+        </p>
+        <div class="stack-diagram reveal">
+          <div class="stack-layer stack-woven">
+            <img class="stack-logo" src="logos/woven_logo.png" alt="Woven" />
+            <span class="stack-role mono">STRATEGIC · the interpretive layer</span>
+            <div class="stack-threads" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="stack-layer stack-ops">
+            <div class="stack-chip" style="--bob-delay:0s">
+              <img src="logos/ngpvan.webp" alt="NGP VAN" class="chip-logo" />
+              <span>NGP VAN</span>
+            </div>
+            <div class="stack-chip" style="--bob-delay:0.22s">
+              <img src="logos/actblue.png" alt="ActBlue" class="chip-logo" />
+              <span>ActBlue</span>
+            </div>
+            <div class="stack-chip" style="--bob-delay:0.44s">
+              <img src="logos/mobilize.png" alt="Mobilize" class="chip-logo" />
+              <span>Mobilize</span>
+            </div>
+            <div class="stack-chip" style="--bob-delay:0.66s">
+              <img src="logos/meta.png" alt="Meta Ads" class="chip-logo" />
+              <span>Meta Ads</span>
+            </div>
+            <div class="stack-chip" style="--bob-delay:0.88s">
+              <img src="logos/gdrive.svg" alt="Google Drive" class="chip-logo" />
+              <span>Google Drive</span>
+            </div>
+          </div>
+          <span class="stack-caption mono">OPERATIONAL · keeps doing what it does</span>
+        </div>
+        <div class="stack-whys">
+          <div class="why-card reveal" style="--i:0">
+            <h3>Speed is the whole game</h3>
+            <p>The narrative flipped in 72 hours. Campaigns that need a week of agency back-and-forth to re-cut the message lose the week.</p>
+          </div>
+          <div class="why-card reveal" style="--i:1">
+            <h3>Attention moved. Tools didn't.</h3>
+            <p>Persuadable voters live in creator audiences your media plan can't see. Woven maps that terrain like a voter file.</p>
+          </div>
+          <div class="why-card reveal" style="--i:2">
+            <h3>Strategy shouldn't be tribal knowledge</h3>
+            <p>When the read on the race lives in one consultant's head, you're one bad week from blind. Woven makes it a shared surface.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CTA ======================= -->
+    <section class="section section-cta" id="cta">
+      <div class="container cta-inner">
+        <h2 class="cta-title reveal">Run the race like you can<br /><span class="grad-text">see all of it.</span></h2>
+        <p class="section-sub reveal">Walkthroughs run 15 minutes, scoped to a real race profile. Bring your campaign manager.</p>
+        <form class="cta-form reveal" id="cta-form">
+          <input type="email" placeholder="you@campaign.org" aria-label="Email address" required />
+          <button type="submit" class="btn btn-primary btn-magnetic">Request a demo<span class="btn-arrow">→</span></button>
+        </form>
+        <p class="cta-fine mono reveal" id="cta-fine">No live data required to start — we demo on a representative race.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img class="logo-img" src="logos/woven_logo.png" alt="Woven" />
+        <p class="mono">The strategic layer for modern campaigns.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#problem">Why Woven</a>
+        <a href="#domains">Domains</a>
+        <a href="#rabbitholes">Rabbit Holes</a>
+        <a href="#cta">Request a demo</a>
+      </nav>
+      <p class="footer-copy mono">© 2026 Woven. Built for the operators.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="landing.js"></script>
+</body>
+</html>
