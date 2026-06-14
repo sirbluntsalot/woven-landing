@@ -1163,7 +1163,7 @@ const ctaForm = document.getElementById("cta-form");
 const ctaFine = document.getElementById("cta-fine");
 ctaForm?.addEventListener("submit", (e) => {
   e.preventDefault(); // STUB: no backend — demo-request wiring comes later
-  ctaFine.textContent = "✓ You're on the list. We'll reach out within one business day.";
+  ctaFine.textContent = "✓ You're on the list.";
   ctaFine.classList.add("success");
   ctaForm.querySelector("input").value = "";
 });
