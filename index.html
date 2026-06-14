@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Woven — Campaign Intelligence Platform</title>
-  <meta name="description" content="Woven maps the digital and rhetorical terrain of your race, then lets you build, test, and deploy the message — all in one platform. The strategic layer modern campaigns are missing." />
+  <title>Woven: Campaign Intelligence Platform</title>
+  <meta name="description" content="Woven maps the digital and rhetorical terrain of your race, then lets you build, test, and deploy the message, all in one platform. The strategic layer modern campaigns are missing." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@400..600&family=Scope+One&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="landing.css" />
+  <link rel="stylesheet" href="landing.css?v=3" />
 </head>
 <body>
 
@@ -36,17 +36,21 @@
       <canvas id="hero-canvas" aria-hidden="true"></canvas>
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-content">
-        <h1 class="hero-title reveal">
-          See the whole race.<br />
-          <span class="grad-text">Every single morning.</span>
-        </h1>
-        <p class="hero-sub reveal">
-          Woven maps the <strong>digital</strong> and <strong>rhetorical</strong> terrain of your race — then lets you
-          <strong>build, test, and deploy</strong> the message on one canvas, so every day starts with a decision, not a scramble.
-        </p>
-        <div class="hero-ctas reveal">
-          <a href="#cta" class="btn btn-primary btn-magnetic">Request a demo<span class="btn-arrow">→</span></a>
-          <a href="#domains" class="btn btn-ghost">Explore the platform</a>
+        <div class="hero-copy">
+          <h1 class="hero-title reveal">
+            The strategy platform for<br />
+            <span class="grad-text">the modern era of politics</span>
+          </h1>
+          <div class="hero-ctas reveal">
+            <a href="#cta" class="btn btn-primary btn-magnetic">Request a demo<span class="btn-arrow">→</span></a>
+            <a href="#domains" class="btn btn-ghost">Explore the platform</a>
+          </div>
+        </div>
+        <div class="hero-stage" aria-hidden="true">
+          <canvas id="hero-intake"></canvas>
+          <div class="hero-well">
+            <img class="hero-mark" src="logos/woven-mark.svg" alt="" width="108" height="108" />
+          </div>
         </div>
       </div>
       <div class="scroll-hint" aria-hidden="true"><span></span></div>
@@ -55,15 +59,15 @@
     <!-- ======================= TICKER ======================= -->
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
-        <span class="tick hot">● HOT&nbsp; ICE raids reshaping the narrative — rapid-response playbook spun up in Canvas</span>
-        <span class="tick pressure">▲ PRESSURE&nbsp; Veteran-care position under pressure — opponent caucus announcement</span>
-        <span class="tick whitespace">◆ WHITESPACE&nbsp; Water &amp; tribal sovereignty — no opponent counterpart detected</span>
+        <span class="tick hot">● HOT&nbsp; ICE raids reshaping the narrative: rapid-response playbook spun up in Canvas</span>
+        <span class="tick pressure">▲ PRESSURE&nbsp; Veteran-care position under pressure: opponent caucus announcement</span>
+        <span class="tick whitespace">◆ WHITESPACE&nbsp; Water &amp; tribal sovereignty: no opponent counterpart detected</span>
         <span class="tick reach">$2,156 digital buy → 78,000 persuadables reached</span>
         <span class="tick sim">◎ SIM&nbsp; Contrast blitz scores 81/100 alignment with Latino political media</span>
         <span class="tick delta">▸ DEPLOY&nbsp; Launch rollout: 11 assets · 6 approved · 2 published</span>
-        <span class="tick hot">● HOT&nbsp; ICE raids reshaping the narrative — rapid-response playbook spun up in Canvas</span>
-        <span class="tick pressure">▲ PRESSURE&nbsp; Veteran-care position under pressure — opponent caucus announcement</span>
-        <span class="tick whitespace">◆ WHITESPACE&nbsp; Water &amp; tribal sovereignty — no opponent counterpart detected</span>
+        <span class="tick hot">● HOT&nbsp; ICE raids reshaping the narrative: rapid-response playbook spun up in Canvas</span>
+        <span class="tick pressure">▲ PRESSURE&nbsp; Veteran-care position under pressure: opponent caucus announcement</span>
+        <span class="tick whitespace">◆ WHITESPACE&nbsp; Water &amp; tribal sovereignty: no opponent counterpart detected</span>
         <span class="tick reach">$2,156 digital buy → 78,000 persuadables reached</span>
         <span class="tick sim">◎ SIM&nbsp; Contrast blitz scores 81/100 alignment with Latino political media</span>
         <span class="tick delta">▸ DEPLOY&nbsp; Launch rollout: 11 assets · 6 approved · 2 published</span>
@@ -77,7 +81,9 @@
         <h2 class="section-title reveal">Your stack runs the campaign.<br /><span class="dim">Nothing reads the race.</span></h2>
         <p class="section-sub reveal">
           CRMs tell you who to call. Ad platforms tell you what you spent. Spreadsheets tell you what already happened.
-          They're operational tools — and none of them can tell you <em>what it all means</em>.
+          They're operational tools, and none of them can tell you <em>what it all means</em>. Woven maps the digital and
+          rhetorical terrain of your race, then lets you build, test, and deploy the message on one canvas, so every day
+          starts with a decision, not a scramble.
         </p>
         <div class="problem-grid">
           <div class="p-card tilt reveal" style="--i:0">
@@ -101,8 +107,44 @@
           <div class="p-card p-card-woven tilt reveal" style="--i:3">
             <div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/></svg></div>
             <h3>Woven</h3>
-            <p>The interpretive layer that sits above all of it. One god-view of the race — refreshed every morning.</p>
+            <p>The interpretive layer that sits above all of it. One god-view of the race, refreshed every morning.</p>
             <span class="p-tag p-tag-accent mono">STRATEGIC</span>
+          </div>
+        </div>
+
+        <!-- 3D fanned stack of live product walkthroughs — click one to bring it forward -->
+        <p class="gap-lead reveal">Here's the difference in motion — three live walkthroughs of the actual product, looping in real time. Click any card to bring it forward.</p>
+        <div class="demo-stack reveal" id="demo-stack">
+          <div class="stack-fit" id="stack-fit">
+          <div class="stack-scene" id="stack-scene">
+            <button type="button" class="stack-card" data-card="digital" style="--i:0" aria-label="Digital walkthrough — bring forward">
+              <div class="stack-bob">
+                <video class="gap-video" id="gap-video" muted loop playsinline preload="metadata" poster="woven-demo/woven-loop-poster.jpg">
+                  <source src="woven-demo/woven-loop.mp4" type="video/mp4" />
+                  <source src="woven-demo/woven-loop.webm" type="video/webm" />
+                </video>
+                <span class="stack-label mono">Digital</span>
+              </div>
+            </button>
+            <button type="button" class="stack-card" data-card="rhetorical" style="--i:1" aria-label="Rhetorical walkthrough — bring forward">
+              <div class="stack-bob">
+                <video class="gap-video" id="gap-video-rhet" muted loop playsinline preload="metadata" poster="woven-demo/woven-rhetorical-poster.jpg">
+                  <source src="woven-demo/woven-rhetorical-loop.mp4" type="video/mp4" />
+                  <source src="woven-demo/woven-rhetorical-loop.webm" type="video/webm" />
+                </video>
+                <span class="stack-label mono">Rhetorical</span>
+              </div>
+            </button>
+            <button type="button" class="stack-card" data-card="rabbit" style="--i:2" aria-label="Rabbit Holes walkthrough — bring forward">
+              <div class="stack-bob">
+                <video class="gap-video" id="gap-video-rabbit" muted loop playsinline preload="metadata" poster="woven-demo/woven-rabbitholes-poster.jpg">
+                  <source src="woven-demo/woven-rabbitholes-loop.mp4" type="video/mp4" />
+                  <source src="woven-demo/woven-rabbitholes-loop.webm" type="video/webm" />
+                </video>
+                <span class="stack-label mono">Rabbit Holes</span>
+              </div>
+            </button>
+          </div>
           </div>
         </div>
       </div>
@@ -114,7 +156,7 @@
         <p class="kicker reveal">The platform</p>
         <h2 class="section-title reveal">Three domains. <span class="dim">One field of view.</span></h2>
         <p class="section-sub reveal">
-          Every domain answers a question your campaign manager asks daily — and they cross-reference each other,
+          Every domain answers a question your campaign manager asks daily, and they cross-reference each other,
           so one click moves you from a news event to the creator who amplified it to the response asset you ship the same day.
         </p>
 
@@ -140,11 +182,11 @@
               <p>
                 Woven positions hundreds of online creators in a 3D ideological space and filters to the ones with real
                 audience inside <em>your</em> race. A live engagement layer shows which voices you've booked, which your
-                opponent owns — and the amber whitespace neither of you has touched.
+                opponent owns, and the amber whitespace neither of you has touched.
               </p>
               <ul class="domain-points">
                 <li><span class="li-dot blue"></span>Friendly / hostile / whitespace overlay on every creator</li>
-                <li><span class="li-dot blue"></span>Weekly delta ribbon — five events that moved your map</li>
+                <li><span class="li-dot blue"></span>Weekly delta ribbon: five events that moved your map</li>
                 <li><span class="li-dot blue"></span>Ad opportunities ranked by cost-per-persuadable</li>
               </ul>
             </div>
@@ -170,11 +212,11 @@
           <!-- CANVAS -->
           <article class="domain-panel" data-domain="canvas">
             <div class="domain-copy">
-              <p class="domain-q mono">“Can we build it, test it, and ship it — without leaving the room?”</p>
+              <p class="domain-q mono">“Can we build it, test it, and ship it, without leaving the room?”</p>
               <h3>The 360° messaging canvas: build, test, deploy</h3>
               <p>
                 One core message, orchestrated across paid, earned, owned, creator, and ground channels on a single
-                node canvas. Start from a pre-wired playbook — candidate launch, contrast attack, rapid response —
+                node canvas. Start from a pre-wired playbook (candidate launch, contrast attack, rapid response),
                 let AI draft the first pass of every deliverable, then <em>simulate the whole campaign</em> against
                 real Woven audiences before a dollar moves.
               </p>
@@ -318,7 +360,7 @@
           <article class="domain-panel" data-domain="rhetorical">
             <div class="domain-copy">
               <p class="domain-q mono">“Who's winning the policy head-to-head?”</p>
-              <h3>Your positions vs. theirs — under live pressure</h3>
+              <h3>Your positions vs. theirs, under live pressure</h3>
               <p>
                 Durable policy cards face off across the divider while ephemeral news events apply <em>pressure</em> to them
                 in real time. When two hostile stories hit the same position inside a week, the card flags it.
@@ -366,7 +408,7 @@
                         <div class="fc-body rh-body">
                           <div class="fc-title-row"><span class="fc-title">Cap Insulin at $35</span></div>
                           <div class="fc-divider"></div>
-                          <p class="fc-desc">Extend the insulin copay cap to every patient — insured or not.</p>
+                          <p class="fc-desc">Extend the insulin copay cap to every patient, insured or not.</p>
                         </div>
                       </div>
                       <div class="fc-card rh-card rh-policy" data-rh="2" style="--rh-in: translate(0px, 160px) rotate(-8deg) scale(0.85); --rh-out: translate(0px, -160px) rotate(8deg) scale(0.85);">
@@ -417,15 +459,15 @@
           <p class="kicker reveal">The rabbit hole engine</p>
           <h2 class="section-title reveal">Audiences drift.<br />Rabbit holes pull. <span class="dim">Trace one.</span></h2>
           <p class="section-sub reveal">
-            Nobody jumps from gym content to hyper-political punditry in one leap — the algorithm walks them
+            Nobody jumps from gym content to hyper-political punditry in one leap. The algorithm walks them
             there, one recommendation at a time. Woven maps that drift as a weighted graph over the entire
             creator space and runs real pathfinding on it: the likeliest routes your persuadable voters are
             already traveling, and the exact hop where a message can still reach them.
           </p>
           <ul class="rab-points reveal">
-            <li><span class="li-dot blue"></span><span>Audience flow becomes a weighted graph — shortest-path routing surfaces the likeliest journeys, not anecdotes</span></li>
+            <li><span class="li-dot blue"></span><span>Audience flow becomes a weighted graph: shortest-path routing surfaces the likeliest journeys, not anecdotes</span></li>
             <li><span class="li-dot coral"></span><span>Every route ends at an <strong>attractor</strong>: the ecosystem pulling hardest on that audience</span></li>
-            <li><span class="li-dot teal"></span><span>The <strong>intercept window</strong> is hop one — book the gateway voice before the slide finishes</span></li>
+            <li><span class="li-dot teal"></span><span>The <strong>intercept window</strong> is hop one: book the gateway voice before the slide finishes</span></li>
           </ul>
           <div class="rab-controls reveal">
             <span class="rab-controls-label mono">TRACE A STARTING AUDIENCE</span>
@@ -469,7 +511,7 @@
         </div>
         <p class="numbers-foot reveal">
           Woven surfaced this gap automatically: a creator with more in-district reach than the local NBC affiliate's
-          evening news — and neither campaign had touched them. That's <strong>whitespace</strong>, and your race is full of it.
+          evening news, and neither campaign had touched them. That's <strong>whitespace</strong>, and your race is full of it.
         </p>
       </div>
     </section>
@@ -481,9 +523,9 @@
           <div class="brief-window">
             <div class="viz-chrome"><span></span><span></span><span></span><em class="mono">DAILY BRIEF · DAY 44 OF 120</em></div>
             <div class="brief-lines" id="brief-lines">
-              <div class="brief-line" data-tag="RHETORICAL" data-tagclass="bt-coral" data-text="Veteran-care position under pressure — opponent announced caucus membership last night."></div>
+              <div class="brief-line" data-tag="RHETORICAL" data-tagclass="bt-coral" data-text="Veteran-care position under pressure: opponent announced caucus membership last night."></div>
               <div class="brief-line" data-tag="DIGITAL" data-tagclass="bt-blue" data-text="Border Nurses podcast flagged: 9,400 in-district listeners, zero contact from either campaign."></div>
-              <div class="brief-line" data-tag="CANVAS" data-tagclass="bt-teal" data-text="Launch rollout: 9 of 11 assets approved. Contrast video still in review — owner pinged."></div>
+              <div class="brief-line" data-tag="CANVAS" data-tagclass="bt-teal" data-text="Launch rollout: 9 of 11 assets approved. Contrast video still in review: owner pinged."></div>
               <div class="brief-line" data-tag="RHETORICAL" data-tagclass="bt-amber" data-text="Whitespace open: water &amp; tribal sovereignty. No opponent counterpart. Draft ready."></div>
               <div class="brief-line" data-tag="DIGITAL" data-tagclass="bt-blue" data-text="Weekly delta: +2.4 pts among veteran households traced to the Aug 22 VFW roundtable."></div>
             </div>
@@ -494,11 +536,11 @@
           <h2 class="section-title reveal">The Daily Brief turns<br />your race into <span class="grad-text">turns</span>.</h2>
           <p class="section-sub reveal">
             Think grand strategy: every day is one turn, and Woven opens it with five bullets that matter.
-            Each one links straight into the domain it came from — click a flag, land on the exact
+            Each one links straight into the domain it came from: click a flag, land on the exact
             creator, policy card, or campaign asset behind it.
           </p>
           <ul class="brief-points reveal">
-            <li><strong>Interpreted, not aggregated.</strong> Woven reads the canvass notes, the news cycle, and the creator map overnight — you read five sentences.</li>
+            <li><strong>Interpreted, not aggregated.</strong> Woven reads the canvass notes, the news cycle, and the creator map overnight. You read five sentences.</li>
             <li><strong>One click to evidence.</strong> Every bullet deep-links into its domain with the relevant entity highlighted.</li>
             <li><strong>Built for the operator.</strong> Your campaign manager gets a god-view before the first staff call.</li>
           </ul>
@@ -512,8 +554,8 @@
         <p class="kicker reveal">Where Woven fits</p>
         <h2 class="section-title reveal">Above your stack. <span class="dim">Not instead of it.</span></h2>
         <p class="section-sub reveal">
-          Keep NGP VAN. Keep ActBlue, Mobilize, and your ad accounts. Woven doesn't replace operational tools —
-          it's the interpretive layer that reads them together and hands you the strategy.
+          Keep NGP VAN. Keep ActBlue, Mobilize, and your ad accounts. Woven doesn't replace operational tools.
+          It's the interpretive layer that reads them together and hands you the strategy.
         </p>
         <div class="stack-diagram reveal">
           <div class="stack-layer stack-woven">
@@ -565,13 +607,13 @@
     <!-- ======================= CTA ======================= -->
     <section class="section section-cta" id="cta">
       <div class="container cta-inner">
-        <h2 class="cta-title reveal">Run the race like you can<br /><span class="grad-text">see all of it.</span></h2>
+        <h2 class="cta-title reveal"><span class="grad-text">Ready to win</span></h2>
         <p class="section-sub reveal">Walkthroughs run 15 minutes, scoped to a real race profile. Bring your campaign manager.</p>
         <form class="cta-form reveal" id="cta-form">
           <input type="email" placeholder="you@campaign.org" aria-label="Email address" required />
           <button type="submit" class="btn btn-primary btn-magnetic">Request a demo<span class="btn-arrow">→</span></button>
         </form>
-        <p class="cta-fine mono reveal" id="cta-fine">No live data required to start — we demo on a representative race.</p>
+        <p class="cta-fine mono reveal" id="cta-fine">No live data required to start. We demo on a representative race.</p>
       </div>
     </section>
   </main>
@@ -593,6 +635,6 @@
     </div>
   </footer>
 
-  <script type="module" src="landing.js"></script>
+  <script type="module" src="landing.js?v=3"></script>
 </body>
 </html>

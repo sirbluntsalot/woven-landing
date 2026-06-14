@@ -1,7 +1,7 @@
 /* ===================================================================
    Woven — SaaS landing page
    Light, ink-on-paper system drawn from the Woven app UI
-   (#f6f7fa surfaces, #323131 ink, hairline borders, #4169E1 accent)
+   (#f6f7fa surfaces, #323131 ink, hairline borders, #4169e1 accent)
    with Attio-style restraint. Geist everywhere.
    =================================================================== */
 
@@ -138,28 +138,66 @@ body {
    HERO
    =================================================================== */
 .hero {
-  position: relative; min-height: 100svh;
-  display: flex; align-items: center; justify-content: center;
-  text-align: center; padding: 130px 24px 90px;
+  position: relative; min-height: 100svh; overflow: hidden;
+  display: flex; align-items: center;
+  padding: 130px 24px 90px;
   background:
     radial-gradient(ellipse 80% 55% at 50% -10%, rgba(65, 105, 225, 0.07), transparent),
     linear-gradient(180deg, #dde2ee 0%, #ccd5eb 100%);
 }
 /* hero dot grid is drawn by the canvas (shifting sands) — no ::before needed */
-#hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+#hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
 .hero-glow { display: none; }
-.hero-content { position: relative; z-index: 2; max-width: 880px; }
+
+/* two columns: copy on the left, animation stage on the right */
+.hero-content {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1180px; margin-inline: auto;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  gap: 56px; align-items: center; text-align: left;
+}
+.hero-copy { min-width: 0; }
+
+/* the animation lives entirely inside this right-hand stage (clipped) */
+.hero-stage {
+  position: relative; align-self: stretch; overflow: hidden;
+  min-height: 460px; display: flex; align-items: center; justify-content: center;
+}
+/* media-intake canvas: scroll-scrubbed clips/posts funnelling into the mark */
+#hero-intake { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+/* gravity-well: the Woven mark the media is pulled into */
+.hero-well {
+  position: relative; z-index: 1; margin: 0;
+  width: clamp(76px, 8vw, 108px); height: clamp(76px, 8vw, 108px);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-mark {
+  width: 100%; height: 100%; object-fit: contain;
+  /* --well-glow (0..1) is driven from landing.js as media is absorbed — kept subtle */
+  filter: drop-shadow(0 0 calc(2px + var(--well-glow, 0) * 9px) rgba(65, 105, 225, calc(0.04 + var(--well-glow, 0) * 0.16)));
+  transform: scale(calc(1 + var(--well-glow, 0) * 0.03));
+  transition: filter .14s linear, transform .14s linear;
+  will-change: filter, transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-mark { transition: none; }
+}
 
 .hero-title {
-  font-size: clamp(44px, 7.2vw, 82px);
-  font-weight: 640; letter-spacing: -0.04em; line-height: 1.04;
+  font-family: "Scope One", serif;
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 400; letter-spacing: -0.01em; line-height: 1.1;
   color: var(--ink); margin-bottom: 24px;
+  -webkit-text-stroke: 0.15px var(--ink);
+  paint-order: stroke fill;
 }
 .grad-text {
   background: var(--grad);
   background-size: 200% 100%;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
+  -webkit-text-stroke: 0;
   animation: grad-pan 7s ease-in-out infinite;
 }
 @keyframes grad-pan {
@@ -168,10 +206,17 @@ body {
 }
 .hero-sub {
   font-size: clamp(17px, 2vw, 19.5px); color: var(--text-dim);
-  max-width: 620px; margin: 0 auto 36px; font-weight: 410;
+  max-width: 520px; margin: 0 0 36px; font-weight: 410;
 }
 .hero-sub strong { color: var(--ink); font-weight: 560; }
-.hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.hero-ctas { display: flex; gap: 12px; justify-content: flex-start; flex-wrap: wrap; }
+
+/* stack to a single column on narrow screens (copy first, then stage) */
+@media (max-width: 860px) {
+  .hero { text-align: left; }
+  .hero-content { grid-template-columns: 1fr; gap: 32px; max-width: 560px; }
+  .hero-stage { min-height: 340px; }
+}
 
 .scroll-hint {
   position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
@@ -227,14 +272,15 @@ body {
   background-position: 50% var(--dotY, 0px);
 }
 .kicker {
-  font-family: "Scope One", serif; font-size: 13px; letter-spacing: 0.14em;
+  font-family: var(--font); font-size: 13px; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--blue); margin-bottom: 16px;
   -webkit-text-stroke: 0.15px var(--blue);
   paint-order: stroke fill;
 }
 .section-title {
-  font-size: clamp(32px, 4.6vw, 50px); font-weight: 620;
-  letter-spacing: -0.035em; line-height: 1.1; color: var(--ink); margin-bottom: 20px;
+  font-family: "Scope One", serif;
+  font-size: clamp(32px, 4.6vw, 50px); font-weight: 400;
+  letter-spacing: -0.01em; line-height: 1.1; color: var(--ink); margin-bottom: 20px;
 }
 .section-title .dim { color: var(--text-faint); }
 .section-sub {
@@ -277,6 +323,97 @@ body {
 .p-card-woven .p-icon { background: rgba(65, 105, 225, 0.08); border-color: rgba(65, 105, 225, 0.2); color: var(--blue); }
 .p-card-woven:hover { border-color: rgba(65, 105, 225, 0.55); }
 .p-tag-accent { color: var(--blue); background: rgba(65, 105, 225, 0.07); border-color: rgba(65, 105, 225, 0.2); }
+
+/* ---------- live product demos — 3D fanned stack of recorded walkthroughs ------ */
+.gap-lead {
+  margin-top: 56px; margin-bottom: 8px;
+  font-size: 15px; color: var(--text-dim); max-width: 640px;
+}
+
+/* The fan is authored at a fixed 1100×600 design size and scaled to the
+   container width by JS (--fit), so it never overflows / clips at any width.
+   Each card holds a slightly-oversized inner (.stack-bob) so its idle bob never
+   reveals an edge. Clicking a card adds .focused (flies face-on to the front);
+   the scene gets .has-focus to dim the others. */
+.demo-stack { position: relative; width: 100%; }
+.stack-fit {
+  position: absolute; top: 0; left: 50%;
+  width: 1100px; height: 600px;
+  transform: translateX(-50%) scale(var(--fit, 1));
+  transform-origin: top center;
+}
+.stack-scene {
+  position: relative; width: 100%; height: 100%;
+  perspective: 1600px;
+  perspective-origin: 48% 42%;
+}
+/* .stack-card is a transparent positioning frame (the fan placement / focus);
+   the visible surface is .stack-bob, which matches the video's aspect exactly
+   so object-fit:cover never crops the app's edges, and floats as a whole unit
+   for the idle bob (no oversizing → no cropping). */
+.stack-card {
+  position: absolute; left: 50%; top: 50%;
+  width: 560px;
+  aspect-ratio: 1440 / 880;
+  margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer;
+  transform-origin: center center; transform-style: preserve-3d;
+  /* idle (stacked) fan position — front card (i:0) closest at lower-left,
+     successive cards recede up-and-right at the same tilt */
+  --rot: -36deg;
+  transform:
+    translate(-50%, -50%)
+    translate3d(calc(-150px + var(--i) * 218px), calc(62px - var(--i) * 96px), calc(55px - var(--i) * 215px))
+    rotateY(var(--rot));
+  transition: transform 0.75s var(--ease-out), opacity 0.5s, filter 0.5s;
+  will-change: transform;
+}
+.stack-card:nth-child(1) { z-index: 30; }
+.stack-card:nth-child(2) { z-index: 20; }
+.stack-card:nth-child(3) { z-index: 10; }
+
+/* the whole surface floats as one unit (no crop); fills the frame exactly */
+.stack-bob {
+  position: absolute; inset: 0;
+  border-radius: 14px; overflow: hidden; background: #0b0c0f;
+  outline: 1px solid rgba(255,255,255,0.5);
+  box-shadow: 0 1px 2px rgba(28,29,32,0.18), 0 30px 60px -24px rgba(28,29,32,0.5);
+  animation: stack-bob 5.4s ease-in-out infinite;
+  transition: box-shadow 0.5s;
+}
+.stack-bob video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.stack-card:nth-child(1) .stack-bob { animation-delay: 0s; }
+.stack-card:nth-child(2) .stack-bob { animation-delay: -1.8s; }
+.stack-card:nth-child(3) .stack-bob { animation-delay: -3.6s; }
+.stack-card:hover .stack-bob { box-shadow: 0 1px 2px rgba(28,29,32,0.2), 0 36px 70px -22px rgba(28,29,32,0.6); }
+@keyframes stack-bob {
+  0%, 100% { transform: translateY(-7px); }
+  50%      { transform: translateY(7px); }
+}
+
+.stack-label {
+  position: absolute; left: 12px; bottom: 11px; z-index: 2;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #fff; background: rgba(12,13,15,0.5); backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; padding: 4px 11px;
+  pointer-events: none; transition: opacity 0.4s;
+}
+
+/* focused: fly face-on to the front and enlarge */
+.stack-card.focused {
+  z-index: 100;
+  /* nudge down/right to counter the drift toward the perspective origin */
+  transform: translate(-50%, -50%) translate3d(16px, 34px, 250px) rotateY(0deg);
+  cursor: zoom-out;
+}
+.stack-card.focused .stack-bob {
+  animation-play-state: paused; /* steady while read */
+  box-shadow: 0 2px 4px rgba(28,29,32,0.2), 0 50px 90px -30px rgba(28,29,32,0.6);
+}
+.demo-stack.has-focus .stack-card:not(.focused) { opacity: 0.42; filter: saturate(0.78); }
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-bob { animation: none; }
+}
 
 /* ===================================================================
    DOMAINS
@@ -322,7 +459,7 @@ body {
 .domain-panel.active { opacity: 1; transform: none; pointer-events: auto; position: relative; }
 
 .domain-q { color: var(--text-faint); font-size: 13px; margin-bottom: 14px; }
-.domain-copy h3 { font-size: 27px; font-weight: 620; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 14px; }
+.domain-copy h3 { font-family: "Scope One", serif; font-size: 27px; font-weight: 400; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 14px; -webkit-text-stroke: 0.15px var(--ink); paint-order: stroke fill; }
 .domain-copy > p { color: var(--text-dim); font-size: 15px; margin-bottom: 24px; }
 .domain-copy em { color: var(--ink); }
 .domain-points { list-style: none; display: grid; gap: 12px; }
@@ -841,7 +978,7 @@ body {
     var(--bg);
 }
 .cta-inner { position: relative; z-index: 2; }
-.cta-title { font-size: clamp(36px, 5.4vw, 60px); font-weight: 630; letter-spacing: -0.035em; line-height: 1.08; color: var(--ink); margin-bottom: 20px; }
+.cta-title { font-family: "Scope One", serif; font-size: clamp(36px, 5.4vw, 60px); font-weight: 400; letter-spacing: -0.01em; line-height: 1.08; color: var(--ink); margin-bottom: 20px; }
 .section-cta .section-sub { margin: 0 auto 36px; }
 .cta-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
 .cta-form input {

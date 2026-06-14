@@ -114,6 +114,271 @@ function dotGrid(canvas, { maxAlpha = 0.34, spacing = 22, amp = 3.4 } = {}) {
 dotGrid(document.getElementById("hero-canvas"));
 
 /* ===================================================================
+   3b. Hero media intake — a scroll-scrubbed "gravity well".
+   Social posts / clips / images / podcasts / headlines spawn scattered
+   around the hero, float gently at rest, and — as the user scrolls
+   through the hero — spiral inward, shrink, and dissolve into woven
+   threads behind the Woven mark, which glows brighter as it ingests.
+   Motion is DETERMINISTIC in scroll-progress P (0..1) so scrubbing the
+   scrollbar plays it cleanly forwards and backwards.
+   =================================================================== */
+(function heroIntake() {
+  const canvas = document.getElementById("hero-intake");
+  const hero = document.querySelector(".hero");
+  const well = document.querySelector(".hero-well");
+  const mark = document.querySelector(".hero-mark");
+  if (!canvas || !hero || !well || !mark) return;
+
+  const ctx = canvas.getContext("2d");
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const C = { ink: "#323131", blue: "#4169e1", teal: "#0e9f8f", coral: "#e0524d", amber: "#d97706", purple: "#8b5cf6" };
+  const FONT = "'Geist', 'Inter', system-ui, -apple-system, sans-serif";
+  const CARD_SCALE = 0.74;  // shrink cards a touch so the swarm fits the stage
+  const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); };
+  const easeIn = (t) => t * t;
+  const frac = (x) => x - Math.floor(x);
+  // deterministic per-card jitter
+  const rnd = (i, s) => frac(Math.sin(i * 12.9898 + s * 78.233) * 43758.5453);
+
+  /* ---- the deck: what gets sucked in ---------------------------------
+     Tone mirrors the rest of the site — plausible, nonpartisan campaign
+     media. `img` points at an optional real file under landing/media/.   */
+  const DECK = [
+    { type: "post", handle: "DesertSunPolitics", at: "@DesertSunAZ", av: C.blue, txt: ["Early-vote returns are ticking up", "in the suburbs this morning 📈"], hot: true, likes: "2.4k", rt: "812" },
+    { type: "video", title: "WATCH: Town hall turns to water rights", dur: "1:42", src: "TUCSON HERALD", img: "media/clip-1.jpg", hue: C.teal },
+    { type: "podcast", show: "The Cross-Tab", ep: "Ep. 214 — Persuasion in the Sunbelt", len: "47 min", img: "media/pod-1.jpg", hue: C.purple },
+    { type: "image", handle: "@field_team_az", img: "media/img-1.jpg", hue: C.amber, cap: "Knock #10,000 ☀️" },
+    { type: "news", src: "ARIZONA SIGNAL", head: ["Independents break late", "in the CD-06 toss-up"] },
+    { type: "post", handle: "CD6 Watch", at: "@CD6Watch", av: C.coral, txt: ["Three new yard signs on Speedway", "since Tuesday. It's moving."], likes: "318", rt: "44" },
+    { type: "video", title: "What young voters actually want", dur: "0:38", src: "@reels", img: "media/clip-2.jpg", hue: C.coral, vertical: true },
+    { type: "podcast", show: "Sunbelt Signal", ep: "Ep. 88 — The new electorate", len: "33 min", img: "media/pod-2.jpg", hue: C.teal },
+    { type: "post", handle: "Polls & Caucus", at: "@pollsandcaucus", av: C.purple, txt: ["Generic ballot tightens to D+2", "(±3.1). Movement among indies."], likes: "1.1k", rt: "390" },
+    { type: "news", src: "THE REGISTER", head: ["Turnout surges among", "first-time registrants"] },
+    { type: "image", handle: "@vamos_juntos", img: "media/img-2.jpg", hue: C.blue, cap: "Sábado de puertas 🚪" },
+    { type: "video", title: "Ad spot: Insulin caps for everyone", dur: "0:30", src: "YouTube", img: "media/clip-3.jpg", hue: C.blue },
+    { type: "post", handle: "Latino Vote AZ", at: "@LatinoVoteAZ", av: C.teal, txt: ["Spanish-language radio buys", "up 40% across the valley 📻"], likes: "906", rt: "211" },
+    { type: "news", src: "BORDERLANDS BEAT", head: ["Veteran-care vote", "scrambles the map"] },
+  ];
+
+  /* ---- offscreen card prerender (drawn once, transformed per frame) -- */
+  const SC = dpr; // prerender scale
+  function oc(w, h) { const c = document.createElement("canvas"); c.width = w * SC; c.height = h * SC; const x = c.getContext("2d"); x.scale(SC, SC); c._w = w; c._h = h; return [c, x]; }
+  function rr(x, p, y, w, h, r) { x.beginPath(); x.roundRect(p, y, w, h, r); }
+  function shadow(x, blur, a) { x.shadowColor = `rgba(28,29,32,${a})`; x.shadowBlur = blur; x.shadowOffsetY = blur * 0.35; }
+  function noShadow(x) { x.shadowColor = "transparent"; x.shadowBlur = 0; x.shadowOffsetY = 0; }
+  // soft photo placeholder when no real file is present
+  function gradFill(x, w, h, hue, seed) {
+    const g = x.createLinearGradient(0, 0, w, h);
+    g.addColorStop(0, hue); g.addColorStop(1, C.ink); x.fillStyle = g; x.fillRect(0, 0, w, h);
+    x.globalAlpha = 0.16; x.fillStyle = "#fff";
+    for (let k = 0; k < 4; k++) { const r = 14 + rnd(seed, k) * 34; x.beginPath(); x.arc(rnd(seed, k + 9) * w, rnd(seed, k + 3) * h, r, 0, 7); x.fill(); }
+    x.globalAlpha = 1;
+  }
+  function drawThumb(x, item, w, h, seed) {
+    x.save(); rr(x, 0, 0, w, h, 0); x.clip();
+    if (item._img) { const im = item._img, s = Math.max(w / im.width, h / im.height); x.drawImage(im, (w - im.width * s) / 2, (h - im.height * s) / 2, im.width * s, im.height * s); }
+    else gradFill(x, w, h, item.hue || C.blue, seed);
+    x.restore();
+  }
+  function playBtn(x, cx, cy, r) {
+    x.fillStyle = "rgba(20,22,28,0.55)"; x.beginPath(); x.arc(cx, cy, r, 0, 7); x.fill();
+    x.fillStyle = "#fff"; x.beginPath(); x.moveTo(cx - r * 0.32, cy - r * 0.42); x.lineTo(cx - r * 0.32, cy + r * 0.42); x.lineTo(cx + r * 0.46, cy); x.closePath(); x.fill();
+  }
+  function pill(x, px, py, txt, bg, fg) {
+    x.font = `600 9px ${FONT}`; const w = x.measureText(txt).width + 12;
+    x.fillStyle = bg; rr(x, px, py, w, 15, 7.5); x.fill();
+    x.fillStyle = fg; x.textBaseline = "middle"; x.fillText(txt, px + 6, py + 8); return w;
+  }
+
+  function renderCard(item, i) {
+    let w, h, c, x;
+    if (item.type === "post") {
+      w = 226; h = 112; [c, x] = oc(w, h);
+      shadow(x, 14, 0.10); x.fillStyle = "#fff"; rr(x, 1, 1, w - 2, h - 2, 14); x.fill(); noShadow(x);
+      x.fillStyle = item.av; x.beginPath(); x.arc(24, 26, 13, 0, 7); x.fill();
+      x.fillStyle = "#fff"; x.font = `700 12px ${FONT}`; x.textBaseline = "middle"; x.textAlign = "center";
+      x.fillText(item.handle[0], 24, 27); x.textAlign = "left";
+      x.fillStyle = C.ink; x.font = `650 13px ${FONT}`; x.fillText(item.handle, 44, 20);
+      // verified tick
+      x.fillStyle = item.hot ? C.coral : C.blue; x.beginPath(); x.arc(44 + x.measureText(item.handle).width + 9, 20, 5.5, 0, 7); x.fill();
+      x.fillStyle = "#fff"; x.font = `700 7px ${FONT}`; x.textAlign = "center"; x.fillText("✓", 44 + x.measureText(item.handle).width + 9, 20.5); x.textAlign = "left";
+      x.fillStyle = "#9aa1ad"; x.font = `400 11px ${FONT}`; x.fillText(item.at + " · 2h", 44, 34);
+      x.fillStyle = "#2c2f36"; x.font = `400 12.5px ${FONT}`;
+      item.txt.forEach((ln, k) => x.fillText(ln, 16, 58 + k * 17));
+      x.fillStyle = "#9aa1ad"; x.font = `400 11px ${FONT}`;
+      x.fillText("♡ " + item.likes + "    ↻ " + item.rt + "    ↗", 16, h - 14);
+    } else if (item.type === "video") {
+      if (item.vertical) { w = 116; h = 168; } else { w = 210; h = 132; }
+      [c, x] = oc(w, h);
+      shadow(x, 14, 0.12); x.fillStyle = "#fff"; rr(x, 1, 1, w - 2, h - 2, 13); x.fill(); noShadow(x);
+      x.save(); rr(x, 6, 6, w - 12, h - 12, 9); x.clip(); drawThumb(x, item, w - 12, h - 12, i); x.translate(6, 6);
+      // gradient scrim for legibility
+      const g = x.createLinearGradient(0, (h - 12) * 0.45, 0, h - 12); g.addColorStop(0, "rgba(0,0,0,0)"); g.addColorStop(1, "rgba(0,0,0,0.6)"); x.fillStyle = g; x.fillRect(0, 0, w - 12, h - 12);
+      playBtn(x, (w - 12) / 2, (h - 12) / 2 - 6, 17);
+      x.fillStyle = "rgba(0,0,0,0.7)"; rr(x, w - 12 - 40, 10, 32, 16, 4); x.fill();
+      x.fillStyle = "#fff"; x.font = `600 10px ${FONT}`; x.textBaseline = "middle"; x.fillText(item.dur, w - 12 - 34, 18.5);
+      x.font = `600 11px ${FONT}`; x.fillStyle = "#fff";
+      const t = item.title.length > 30 ? item.title.slice(0, 29) + "…" : item.title;
+      x.fillText(t, 8, h - 12 - 16); x.fillStyle = "rgba(255,255,255,0.7)"; x.font = `400 9px ${FONT}`; x.fillText(item.src, 8, h - 12 - 6);
+      x.restore();
+    } else if (item.type === "image") {
+      w = 150; h = 168; [c, x] = oc(w, h);
+      shadow(x, 14, 0.12); x.fillStyle = "#fff"; rr(x, 1, 1, w - 2, h - 2, 13); x.fill(); noShadow(x);
+      x.save(); rr(x, 7, 7, w - 14, w - 14, 9); x.clip(); x.translate(7, 7); drawThumb(x, item, w - 14, w - 14, i + 30); x.restore();
+      x.fillStyle = C.ink; x.font = `650 11px ${FONT}`; x.textBaseline = "alphabetic"; x.fillText(item.handle, 10, w + 4);
+      x.fillStyle = "#9aa1ad"; x.font = `400 11px ${FONT}`; x.fillText("♡  " + item.cap, 10, w + 20);
+    } else if (item.type === "podcast") {
+      w = 232; h = 92; [c, x] = oc(w, h);
+      shadow(x, 14, 0.11); x.fillStyle = "#fff"; rr(x, 1, 1, w - 2, h - 2, 13); x.fill(); noShadow(x);
+      x.save(); rr(x, 10, 10, 72, 72, 9); x.clip(); x.translate(10, 10); drawThumb(x, item, 72, 72, i + 60); x.restore();
+      playBtn(x, 46, 46, 14);
+      x.fillStyle = C.ink; x.font = `650 13px ${FONT}`; x.textBaseline = "alphabetic"; x.fillText(item.show, 94, 30);
+      x.fillStyle = "#6b7280"; x.font = `400 11px ${FONT}`;
+      const e = item.ep.length > 26 ? item.ep.slice(0, 25) + "…" : item.ep; x.fillText(e, 94, 47);
+      // mini waveform
+      x.fillStyle = item.hue || C.purple;
+      for (let b = 0; b < 22; b++) { const bh = 4 + (0.5 + 0.5 * Math.sin(b * 0.9 + i)) * 16; x.fillRect(94 + b * 5, 70 - bh / 2, 2.4, bh); }
+      x.fillStyle = "#9aa1ad"; x.font = `400 10px ${FONT}`; x.fillText("▶ " + item.len, w - 52, 70);
+    } else { // news
+      w = 232; h = 92; [c, x] = oc(w, h);
+      shadow(x, 14, 0.10); x.fillStyle = "#fff"; rr(x, 1, 1, w - 2, h - 2, 13); x.fill(); noShadow(x);
+      x.fillStyle = C.ink; rr(x, 14, 16, 16, 16, 4); x.fill();
+      x.fillStyle = "#fff"; x.font = `700 10px ${FONT}`; x.textBaseline = "middle"; x.fillText(item.src[0], 19, 24.5);
+      x.fillStyle = "#9aa1ad"; x.font = `600 9.5px ${FONT}`; x.textBaseline = "alphabetic"; x.fillText(item.src, 38, 27);
+      x.fillStyle = C.ink; x.font = `650 14px ${FONT}`;
+      item.head.forEach((ln, k) => x.fillText(ln, 14, 52 + k * 18));
+    }
+    item._card = c; item._w = w; item._h = h;
+  }
+
+  /* ---- glow sprite behind the mark ----------------------------------- */
+  const glowR = 118; const [glowC, gx] = oc(glowR * 2, glowR * 2);
+  (function () { const g = gx.createRadialGradient(glowR, glowR, 0, glowR, glowR, glowR); g.addColorStop(0, "rgba(65,105,225,0.26)"); g.addColorStop(0.45, "rgba(65,105,225,0.08)"); g.addColorStop(1, "rgba(65,105,225,0)"); gx.fillStyle = g; gx.fillRect(0, 0, glowR * 2, glowR * 2); })();
+
+  /* ---- layout: spawn points + curved paths --------------------------- */
+  let W = 0, H = 0, sink = { x: 0, y: 0 }, cards = [];
+  function layout() {
+    // sink + spawn geometry are measured against the stage canvas, so the
+    // whole swarm stays inside the right-hand column (clipped by .hero-stage)
+    const cr = canvas.getBoundingClientRect(), wr = well.getBoundingClientRect();
+    sink.x = wr.left - cr.left + wr.width / 2;
+    sink.y = wr.top - cr.top + wr.height / 2;
+    const mobile = window.innerWidth < 860;
+    // fewer cards = less overlap, so each post/clip stays legible
+    const list = (mobile ? DECK.filter((_, i) => i % 2 === 0) : DECK).slice(0, mobile ? 7 : 11);
+    const rx = W * (mobile ? 0.44 : 0.4), ry = H * 0.42;
+    cards = list.map((item, i) => {
+      const n = list.length;
+      const a = (i / n) * Math.PI * 2 + rnd(i, 1) * 0.5;
+      const f = 0.74 + rnd(i, 2) * 0.26;
+      let sx = sink.x + Math.cos(a) * rx * f, sy = sink.y + Math.sin(a) * ry * f;
+      // keep the whole (scaled) card inside the stage so nothing clips at the edges
+      const hw = (item._w / 2) * CARD_SCALE + 14, hh = (item._h / 2) * CARD_SCALE + 14;
+      sx = W > hw * 2 ? clamp(sx, hw, W - hw) : W / 2;
+      sy = H > hh * 2 ? clamp(sy, hh, H - hh) : H / 2;
+      const mx = (sx + sink.x) / 2, my = (sy + sink.y) / 2;
+      const dx = sink.x - sx, dy = sink.y - sy, dl = Math.hypot(dx, dy) || 1;
+      const swirl = (i % 2 ? 1 : -1) * (0.28 + rnd(i, 4) * 0.22);
+      const cxp = mx + (-dy / dl) * dl * swirl, cyp = my + (dx / dl) * dl * swirl; // bezier control
+      return { item, sx, sy, cxp, cyp, delay: (i / n) * 0.4, span: 0.4 + rnd(i, 5) * 0.16, bob: rnd(i, 6) * 6.283, spin: (rnd(i, 7) - 0.5) * 0.5 };
+    });
+  }
+
+  function resize() {
+    W = canvas.clientWidth; H = canvas.clientHeight;   // = .hero-stage size
+    canvas.width = W * dpr; canvas.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    layout();
+  }
+
+  /* ---- scroll progress ------------------------------------------------ */
+  let targetP = 0, P = 0;
+  function readP() { const hr = hero.getBoundingClientRect(); targetP = clamp(-hr.top / (hr.height * 0.6), 0, 1); }
+
+  function bez(s, c, e, t) { const u = 1 - t; return u * u * s + 2 * u * t * c + t * t * e; }
+
+  function draw(ts) {
+    ctx.clearRect(0, 0, W, H);
+
+    // accumulate glow from overall progress + per-card absorption flashes
+    let glow = P * 0.8;
+    const tBob = REDUCED_MOTION ? 0 : ts * 0.001;
+
+    for (const cd of cards) {
+      const cp = smooth(clamp((P - cd.delay) / cd.span, 0, 1));
+      if (cp >= 1) { glow += 0.0; continue; } // fully absorbed → gone
+      const e = easeIn(cp);
+      let px = bez(cd.sx, cd.cxp, sink.x, e);
+      let py = bez(cd.sy, cd.cyp, sink.y, e);
+      // idle float, strongest before it's pulled in
+      const idle = (1 - cp) * 6;
+      px += Math.sin(tBob * 0.9 + cd.bob) * idle;
+      py += Math.cos(tBob * 0.8 + cd.bob) * idle;
+      const scale = lerp(1, 0.12, e) * CARD_SCALE;
+      const alpha = cp < 0.82 ? 1 : clamp(1 - (cp - 0.82) / 0.18, 0, 1);
+      const rot = Math.sin(tBob * 0.5 + cd.bob) * 0.04 * (1 - cp) + cd.spin * e;
+
+      // dissolving threads as it nears the core
+      if (cp > 0.7) {
+        const ta = clamp((cp - 0.7) / 0.3, 0, 1);
+        ctx.save(); ctx.globalAlpha = ta * 0.5; ctx.strokeStyle = cd.item.hue || C.blue; ctx.lineWidth = 1.2; ctx.lineCap = "round";
+        for (let s = 0; s < 3; s++) {
+          const off = (s - 1) * 6 * (1 - ta);
+          ctx.beginPath(); ctx.moveTo(px + off, py + off); ctx.lineTo(lerp(px, sink.x, 0.7), lerp(py, sink.y, 0.7)); ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      // absorption flash near the end
+      glow += Math.exp(-Math.pow((cp - 0.93) / 0.05, 2)) * 0.4;
+
+      const card = cd.item._card; if (!card) continue;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.translate(px, py); ctx.rotate(rot); ctx.scale(scale, scale);
+      ctx.drawImage(card, -cd.item._w / 2, -cd.item._h / 2, cd.item._w, cd.item._h);
+      ctx.restore();
+    }
+
+    glow = clamp(glow, 0, 1);
+    // canvas halo behind the (DOM) mark — subtle
+    const gs = glowR * 2 * (0.55 + 0.4 * glow);
+    ctx.save(); ctx.globalAlpha = 0.1 + 0.28 * glow;
+    ctx.drawImage(glowC, sink.x - gs / 2, sink.y - gs / 2, gs, gs); ctx.restore();
+    mark.style.setProperty("--well-glow", glow.toFixed(3));
+  }
+
+  /* ---- run ------------------------------------------------------------ */
+  function start() {
+    resize();
+    window.addEventListener("resize", resize);
+    if (REDUCED_MOTION) {
+      // no animation loop: redraw only when the user scrolls
+      const render = () => { readP(); P = targetP; draw(performance.now()); };
+      window.addEventListener("scroll", render, { passive: true });
+      render();
+      return;
+    }
+    window.addEventListener("scroll", readP, { passive: true });
+    readP();
+    (function loop(ts) {
+      P += (targetP - P) * 0.12;            // ease toward scroll target
+      const hr = hero.getBoundingClientRect();
+      if (hr.bottom > 0) draw(ts);          // skip work once hero is scrolled past
+      requestAnimationFrame(loop);
+    })(performance.now());
+  }
+
+  // preload optional real images, then prerender after fonts are ready
+  const imgItems = DECK.filter((d) => d.img);
+  Promise.all(imgItems.map((d) => new Promise((res) => {
+    const im = new Image(); im.onload = () => { d._img = im; res(); }; im.onerror = () => res(); im.src = d.img;
+  }))).then(() => (document.fonts ? document.fonts.ready : Promise.resolve()))
+    .then(() => { DECK.forEach(renderCard); start(); });
+})();
+
+/* ===================================================================
    4. Domain tabs — glider + panel swap, auto-rotates until touched
    =================================================================== */
 const tabs = [...document.querySelectorAll(".domain-tab")];
@@ -898,7 +1163,65 @@ const ctaForm = document.getElementById("cta-form");
 const ctaFine = document.getElementById("cta-fine");
 ctaForm?.addEventListener("submit", (e) => {
   e.preventDefault(); // STUB: no backend — demo-request wiring comes later
-  ctaFine.textContent = "✓ You're on the list — we'll reach out within one business day.";
+  ctaFine.textContent = "✓ You're on the list. We'll reach out within one business day.";
   ctaFine.classList.add("success");
   ctaForm.querySelector("input").value = "";
 });
+
+/* ===================================================================
+   13. Problem section — live product demos in a 3D fanned stack.
+   Each card is a seamless recorded walkthrough of the real app, looping in
+   place and bobbing while idle. Clicking a card flies it face-on to the front;
+   clicking it again (or another) returns it. Videos play only while on screen;
+   reduced motion holds the poster frame.
+   =================================================================== */
+document.querySelectorAll(".gap-video").forEach((video) => {
+  if (REDUCED_MOTION) {
+    video.removeAttribute("loop"); // hold the poster frame, no motion
+    return;
+  }
+  new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    },
+    { threshold: 0.25 }
+  ).observe(video);
+});
+
+// click-to-focus: bring a card out of the fan (and back)
+const demoStack = document.getElementById("demo-stack");
+if (demoStack) {
+  // scale the fixed 1100×600 design to the container width so nothing clips
+  const stackFit = document.getElementById("stack-fit");
+  const DW = 1100, DH = 600;
+  let lastW = -1;
+  const fitStack = () => {
+    const avail = demoStack.clientWidth;
+    if (avail === lastW) return;
+    lastW = avail;
+    const f = Math.min(1, avail / DW);
+    stackFit.style.setProperty("--fit", f);
+    demoStack.style.height = `${Math.round(DH * f)}px`;
+  };
+  new ResizeObserver(fitStack).observe(demoStack);
+  fitStack();
+  document.fonts?.ready.then(fitStack);
+
+  const stackCards = [...demoStack.querySelectorAll(".stack-card")];
+  stackCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const wasFocused = card.classList.contains("focused");
+      stackCards.forEach((c) => c.classList.remove("focused"));
+      demoStack.classList.toggle("has-focus", !wasFocused);
+      if (!wasFocused) card.classList.add("focused");
+    });
+  });
+  // clicking the empty scene clears the focus
+  demoStack.addEventListener("click", (e) => {
+    if (e.target === demoStack || e.target.id === "stack-scene") {
+      stackCards.forEach((c) => c.classList.remove("focused"));
+      demoStack.classList.remove("has-focus");
+    }
+  });
+}
