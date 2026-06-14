@@ -925,37 +925,36 @@ body {
 .stack-threads i:nth-child(4)::after { animation-delay: 1.35s; }
 @keyframes thread-pulse { from { top: 100%; opacity: 1; } to { top: -20%; opacity: 0.2; } }
 .stack-ops {
-  margin-top: -22px; padding: 44px 28px 26px;
+  margin-top: -22px; padding: 48px 28px 32px;
   background: #fff; border: 1px solid var(--line); border-radius: 16px;
   box-shadow: var(--shadow-card);
-  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  display: flex; gap: 44px; justify-content: center; align-items: flex-end; flex-wrap: wrap;
 }
+/* transparent logo with the software name centered underneath — no pill */
 .stack-chip {
-  display: flex; align-items: center; gap: 9px;
-  font-size: 11.5px; color: var(--text-dim); letter-spacing: 0.04em;
-  padding: 9px 16px 9px 12px; border-radius: 10px; background: var(--bg-soft);
-  border: 1px solid var(--line-soft);
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  font-size: 13px; font-weight: 500; color: var(--text-dim); letter-spacing: 0.01em;
+  text-align: center;
   animation: chip-bob 3.6s ease-in-out infinite;
   animation-delay: var(--bob-delay, 0s);
-  transition: transform 0.3s var(--ease-out), color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s var(--ease-out), color 0.3s;
   cursor: default;
 }
 .stack-chip:hover {
   transform: translateY(-5px) !important;
   animation-play-state: paused;
-  color: var(--ink); border-color: var(--line);
-  box-shadow: 0 6px 20px -6px rgba(28, 29, 32, 0.14);
+  color: var(--ink);
 }
 @keyframes chip-bob {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-4px); }
 }
 .chip-logo {
-  width: 24px; height: 24px; object-fit: contain; flex-shrink: 0;
-  border-radius: 4px;
+  height: 42px; width: auto; max-width: 110px; object-fit: contain;
+  display: block; flex-shrink: 0;
 }
-/* NGP VAN is a stacked wordmark — give it a touch more room */
-.chip-logo[alt="NGP VAN"] { width: 28px; height: 28px; }
+/* NGP VAN's dot-flower reads airier than the solid app icons — nudge it up to match */
+.chip-logo-ngpvan { height: 46px; }
 .stack-caption { margin-top: 14px; color: var(--text-faint); font-size: 10.5px; letter-spacing: 0.14em; }
 
 .stack-whys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
