@@ -148,12 +148,12 @@ dotGrid(document.getElementById("hero-canvas"));
   const DECK = [
     { type: "post", handle: "DesertSunPolitics", at: "@DesertSunAZ", av: C.blue, txt: ["Early-vote returns are ticking up", "in the suburbs this morning 📈"], hot: true, likes: "2.4k", rt: "812" },
     { type: "video", title: "WATCH: Town hall turns to water rights", dur: "1:42", src: "TUCSON HERALD", img: "media/clip-1.jpg", hue: C.teal },
-    { type: "podcast", show: "The Cross-Tab", ep: "Ep. 214 — Persuasion in the Sunbelt", len: "47 min", img: "media/pod-1.jpg", hue: C.purple },
+    { type: "podcast", show: "The Cross-Tab", ep: "Ep. 214: Persuasion in the Sunbelt", len: "47 min", img: "media/pod-1.jpg", hue: C.purple },
     { type: "image", handle: "@field_team_az", img: "media/img-1.jpg", hue: C.amber, cap: "Knock #10,000 ☀️" },
     { type: "news", src: "ARIZONA SIGNAL", head: ["Independents break late", "in the CD-06 toss-up"] },
     { type: "post", handle: "CD6 Watch", at: "@CD6Watch", av: C.coral, txt: ["Three new yard signs on Speedway", "since Tuesday. It's moving."], likes: "318", rt: "44" },
     { type: "video", title: "What young voters actually want", dur: "0:38", src: "@reels", img: "media/clip-2.jpg", hue: C.coral, vertical: true },
-    { type: "podcast", show: "Sunbelt Signal", ep: "Ep. 88 — The new electorate", len: "33 min", img: "media/pod-2.jpg", hue: C.teal },
+    { type: "podcast", show: "Sunbelt Signal", ep: "Ep. 88: The new electorate", len: "33 min", img: "media/pod-2.jpg", hue: C.teal },
     { type: "post", handle: "Polls & Caucus", at: "@pollsandcaucus", av: C.purple, txt: ["Generic ballot tightens to D+2", "(±3.1). Movement among indies."], likes: "1.1k", rt: "390" },
     { type: "news", src: "THE REGISTER", head: ["Turnout surges among", "first-time registrants"] },
     { type: "image", handle: "@vamos_juntos", img: "media/img-2.jpg", hue: C.blue, cap: "Sábado de puertas 🚪" },
@@ -949,7 +949,7 @@ if (rabFrame) {
         path.style.strokeDasharray = len;
         path.style.strokeDashoffset = len;
         rabPulse.style.opacity = 1;
-        rabReadout.textContent =
+        if (rabReadout) rabReadout.textContent =
           `hop ${i + 1} · ${RAB_NODES[a].label} → ${RAB_NODES[b].label} · ${w[i]}% of audience flow`;
         await new Promise((res) => {
           const t0 = performance.now();
@@ -989,7 +989,7 @@ if (rabFrame) {
     rabIntercept.style.left = `${gate.x}%`;
     rabIntercept.style.top = `${gate.y}%`;
     rabIntercept.classList.add("rab-show");
-    rabReadout.textContent =
+    if (rabReadout) rabReadout.textContent =
       `${RAB_NODES[hops[0]].label} → ${hops.length - 1} hops → ${RAB_NODES[hops[hops.length - 1]].label} · intercept at hop 1, while they're still persuadable`;
   }
 

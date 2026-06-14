@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@400..600&family=Scope+One&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="landing.css?v=4" />
+  <link rel="stylesheet" href="landing.css?v=6" />
 </head>
 <body>
 
@@ -112,12 +112,11 @@
           </div>
         </div>
 
-        <!-- 3D fanned stack of live product walkthroughs — click one to bring it forward -->
-        <p class="gap-lead reveal">Here's the difference in motion — three live walkthroughs of the actual product, looping in real time. Click any card to bring it forward.</p>
+        <!-- 3D fanned stack of live product walkthroughs, click one to bring it forward -->
         <div class="demo-stack reveal" id="demo-stack">
           <div class="stack-fit" id="stack-fit">
           <div class="stack-scene" id="stack-scene">
-            <button type="button" class="stack-card" data-card="digital" style="--i:0" aria-label="Digital walkthrough — bring forward">
+            <button type="button" class="stack-card" data-card="digital" style="--i:0" aria-label="Digital walkthrough, bring forward">
               <div class="stack-bob">
                 <video class="gap-video" id="gap-video" muted loop playsinline preload="metadata" poster="woven-demo/woven-loop-poster.jpg">
                   <source src="woven-demo/woven-loop.mp4" type="video/mp4" />
@@ -126,7 +125,7 @@
                 <span class="stack-label mono">Digital</span>
               </div>
             </button>
-            <button type="button" class="stack-card" data-card="rhetorical" style="--i:1" aria-label="Rhetorical walkthrough — bring forward">
+            <button type="button" class="stack-card" data-card="rhetorical" style="--i:1" aria-label="Rhetorical walkthrough, bring forward">
               <div class="stack-bob">
                 <video class="gap-video" id="gap-video-rhet" muted loop playsinline preload="metadata" poster="woven-demo/woven-rhetorical-poster.jpg">
                   <source src="woven-demo/woven-rhetorical-loop.mp4" type="video/mp4" />
@@ -135,7 +134,7 @@
                 <span class="stack-label mono">Rhetorical</span>
               </div>
             </button>
-            <button type="button" class="stack-card" data-card="rabbit" style="--i:2" aria-label="Rabbit Holes walkthrough — bring forward">
+            <button type="button" class="stack-card" data-card="rabbit" style="--i:2" aria-label="Rabbit Holes walkthrough, bring forward">
               <div class="stack-bob">
                 <video class="gap-video" id="gap-video-rabbit" muted loop playsinline preload="metadata" poster="woven-demo/woven-rabbitholes-poster.jpg">
                   <source src="woven-demo/woven-rabbitholes-loop.mp4" type="video/mp4" />
@@ -359,17 +358,17 @@
           <!-- RHETORICAL -->
           <article class="domain-panel" data-domain="rhetorical">
             <div class="domain-copy">
-              <p class="domain-q mono">“Who's winning the policy head-to-head?”</p>
-              <h3>Your positions vs. theirs, under live pressure</h3>
+              <p class="domain-q mono">“Which issues is no one else running on?”</p>
+              <h3>Find your blind spots and the lanes nobody's running in</h3>
               <p>
-                Durable policy cards face off across the divider while ephemeral news events apply <em>pressure</em> to them
-                in real time. When two hostile stories hit the same position inside a week, the card flags it.
-                When you hold a position your opponent has no answer to, Woven marks the whitespace.
+                Woven tracks every policy matchup in your race, your positions against your opponents' head-to-head,
+                then maps the issue lanes around them: where the conversation's crowded, where you're quietly exposed, and
+                where there's open ground your opponent hasn't touched. Stake out an unorthodox lane before anyone else claims it.
               </p>
               <ul class="domain-points">
-                <li><span class="li-dot coral"></span>News lifecycle: hot → warm → cold → archived</li>
-                <li><span class="li-dot coral"></span>Pressure indicators on threatened positions</li>
-                <li><span class="li-dot coral"></span>Constituency resonance scored per card, per week</li>
+                <li><span class="li-dot coral"></span><strong>Blind-spot radar:</strong> positions you're exposed on but ignoring</li>
+                <li><span class="li-dot coral"></span><strong>Open lanes:</strong> issues with no opponent counterpart yet</li>
+                <li><span class="li-dot coral"></span><strong>Wedge finder:</strong> off-script angles that split their coalition</li>
               </ul>
             </div>
             <div class="domain-viz viz-rhet" aria-hidden="true">
@@ -458,17 +457,6 @@
         <div class="rab-copy">
           <p class="kicker reveal">The rabbit hole engine</p>
           <h2 class="section-title reveal">Audiences drift.<br />Rabbit holes pull. <span class="dim">Trace one.</span></h2>
-          <p class="section-sub reveal">
-            Nobody jumps from gym content to hyper-political punditry in one leap. The algorithm walks them
-            there, one recommendation at a time. Woven maps that drift as a weighted graph over the entire
-            creator space and runs real pathfinding on it: the likeliest routes your persuadable voters are
-            already traveling, and the exact hop where a message can still reach them.
-          </p>
-          <ul class="rab-points reveal">
-            <li><span class="li-dot blue"></span><span>Audience flow becomes a weighted graph: shortest-path routing surfaces the likeliest journeys, not anecdotes</span></li>
-            <li><span class="li-dot coral"></span><span>Every route ends at an <strong>attractor</strong>: the ecosystem pulling hardest on that audience</span></li>
-            <li><span class="li-dot teal"></span><span>The <strong>intercept window</strong> is hop one: book the gateway voice before the slide finishes</span></li>
-          </ul>
           <div class="rab-controls reveal">
             <span class="rab-controls-label mono">TRACE A STARTING AUDIENCE</span>
             <div class="rab-chips" role="group" aria-label="Starting audience">
@@ -477,7 +465,17 @@
               <button type="button" class="rab-chip" data-route="game">Gaming streams</button>
             </div>
           </div>
-          <p class="rab-readout mono reveal" id="rab-readout">tracing audience flow…</p>
+          <p class="section-sub reveal">
+            Nobody jumps from gym content to hyper-political punditry in one leap. The algorithm walks them
+            there, one recommendation at a time. Woven maps that drift as a weighted graph over the entire
+            creator space and runs real pathfinding on it: the likeliest routes your persuadable voters are
+            already traveling, and the exact hop where a message can still reach them.
+          </p>
+          <ul class="rab-points reveal">
+            <li><span class="li-dot blue"></span><span>See the real path an audience drifts down, one creator to the next.</span></li>
+            <li><span class="li-dot blue"></span><span>See where it ends up: the <strong>community pulling them in hardest</strong>.</span></li>
+            <li><span class="li-dot blue"></span><span>Reach them at the <strong>first step</strong>, while they're still persuadable.</span></li>
+          </ul>
         </div>
         <div class="rab-viz reveal">
           <div class="rab-frame" id="rab-frame">
@@ -504,15 +502,12 @@
             <span class="num mono" data-count="78000">0</span>
             <span class="num-label">persuadable voters reached in-district</span>
           </div>
-          <div class="num-card reveal" style="--i:3">
+          <div class="num-arrow reveal mono" style="--i:3">→</div>
+          <div class="num-card reveal" style="--i:4">
             <span class="num mono" data-count="36" data-suffix="×">0</span>
             <span class="num-label">cheaper per persuadable than local TV news</span>
           </div>
         </div>
-        <p class="numbers-foot reveal">
-          Woven surfaced this gap automatically: a creator with more in-district reach than the local NBC affiliate's
-          evening news, and neither campaign had touched them. That's <strong>whitespace</strong>, and your race is full of it.
-        </p>
       </div>
     </section>
 
@@ -635,6 +630,6 @@
     </div>
   </footer>
 
-  <script type="module" src="landing.js?v=4"></script>
+  <script type="module" src="landing.js?v=6"></script>
 </body>
 </html>

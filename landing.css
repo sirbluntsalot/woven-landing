@@ -335,7 +335,7 @@ body {
    Each card holds a slightly-oversized inner (.stack-bob) so its idle bob never
    reveals an edge. Clicking a card adds .focused (flies face-on to the front);
    the scene gets .has-focus to dim the others. */
-.demo-stack { position: relative; width: 100%; }
+.demo-stack { position: relative; width: 100%; margin-top: 48px; }
 .stack-fit {
   position: absolute; top: 0; left: 50%;
   width: 1100px; height: 600px;
